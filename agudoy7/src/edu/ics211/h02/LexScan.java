@@ -22,6 +22,9 @@ public class LexScan {
 	
 	
 	public static String[] lexicalScanner(String str) {
+		
+		str.trim();
+		
 		String[] result = new String[str.length()];
 		
 		int numTokens = 0;
@@ -36,58 +39,94 @@ public class LexScan {
 			
 			if(starter) {
 				
-				if(Character.isJavaIdentifierPart(current)) {
+				if(Character.isJavaIdentifierPart(current)) {	// CASE 1: if isJavaIdentifierPart(), build token
 
 					tmp += str.substring(i, i+1);
 					
-					/*System.out.println();
-					System.out.println(" *** BUILDING ***");
-					System.out.println("CURRENT: " + current);
-					System.out.println("tmp: " + tmp);*/
-					
-				} else {
+				} else if (Character.isWhitespace(current)){	// if isWhiteSpace(), add built token to array
+																// and update values of starter and startingDigit using next char
 					result[numTokens] = tmp;
 					numTokens += 1;
 					tmp = "";
 					
-					starter = i<=str.length()-1 ? Character.isJavaIdentifierStart(current) : starter;
-					startingDigit = i<=str.length()-1 ? Character.isDigit(current) : startingDigit;
-				}
+					starter = Character.isJavaIdentifierStart(str.charAt(i+1));
+					startingDigit = Character.isDigit(str.charAt(i+1));
+					
+				} else if(!Character.isWhitespace(current)) {	// if NOT isWhitespace(), add built token to array
+																// add second token (CASE 3) and update starter and startingDigit
+					result[numTokens] = tmp;
+					numTokens += 1;
+					result[numTokens] = str.substring(i, i+1);
+					numTokens += 1;
+					tmp = "";
+					
+					starter = i<str.length()-1 ? Character.isJavaIdentifierStart(str.charAt(i+1)) : starter;
+					startingDigit = i<str.length()-1 ? Character.isDigit(str.charAt(i+1)) : startingDigit;
+					
+				} 
 				
 			} else if(startingDigit) {
 				
-				if(Character.isDigit(current)) {
+				if(Character.isDigit(current)) {				// CASE 2: if isDigit(), build token
 					
 					tmp += str.substring(i, i+1);
 					
-				} else {
+				} else if(Character.isWhitespace(current)){		// if isWhiteSpace(), add built token to array
+																// and update values of starter and startingDigit using next char
 					result[numTokens] = tmp;
 					numTokens += 1;
 					tmp = "";
 					
-					starter = i<=str.length()-1 ? Character.isJavaIdentifierStart(current) : starter;
-					startingDigit = i<=str.length()-1 ? Character.isDigit(current) : startingDigit;
+					starter = i<str.length()-1 ? Character.isJavaIdentifierStart(str.charAt(i+1)) : starter;
+					startingDigit = i<str.length()-1 ? Character.isDigit(str.charAt(i+1)) : startingDigit;
+					
+				} else if(Character.isJavaIdentifierStart(current)) {	// CASE 1: if isJavaIdentifierStart(), build token
+					
+					result[numTokens] = tmp;
+					numTokens += 1;
+					tmp = str.substring(i, i+1);
+					
+					starter = Character.isJavaIdentifierStart(current);
+					startingDigit = Character.isDigit(current);
+					
+				} else {										// if NOT isWhiteSpace(), add built token to array
+																// add second token (CASE 3) and update starter and startingDigit
+					result[numTokens] = tmp;
+					numTokens += 1;
+					result[numTokens] = str.substring(i, i+1);
+					numTokens += 1;
+					tmp = "";
+					
+					starter = i<str.length()-1 ? Character.isJavaIdentifierStart(str.charAt(i+1)) : starter;
+					startingDigit = i<str.length()-1 ? Character.isDigit(str.charAt(i+1)) : startingDigit;
+					
 				}
 				
-			} else if(Character.isWhitespace(current)) {
+			} else if(Character.isWhitespace(current)) {	// update starter and startingDigit using next char
 				
-				starter = i<=str.length()-1 ? Character.isJavaIdentifierStart(current) : starter;
-				startingDigit = i<=str.length()-1 ? Character.isDigit(current) : startingDigit;
+				starter = i<str.length()-1 ? Character.isJavaIdentifierStart(str.charAt(i+1)) : starter;
+				startingDigit = i<str.length()-1 ? Character.isDigit(str.charAt(i+1)) : startingDigit;
 				
-			} else {
+			} else {										// CASE 3: add token to array and update starter and startingDigit
 				
 				result[numTokens] = str.substring(i, i+1);
 				numTokens += 1;
 				tmp = "";
 				
+				starter = i<str.length()-1 ? Character.isJavaIdentifierStart(str.charAt(i+1)) : starter;
+				startingDigit = i<str.length()-1 ? Character.isDigit(str.charAt(i+1)) : startingDigit;
+				
+			}
+			
+			// if loop ends without appending last token
+			if(i==str.length()-1 && !tmp.equals("")) {
+				
+				result[numTokens] = tmp;
+				numTokens += 1;
+				tmp = "";
+				
 			}
 		}
-		
-		
-		System.out.println();
-		System.out.println(" *** PRINTING *** ");
-		System.out.println("STR: " + str);
-		System.out.println("ARR: " + Arrays.deepToString(Arrays.copyOf(result, numTokens)));
 		
 		return Arrays.copyOf(result, numTokens);
 	}
