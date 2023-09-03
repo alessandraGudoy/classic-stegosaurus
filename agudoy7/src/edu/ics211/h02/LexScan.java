@@ -2,6 +2,11 @@ package edu.ics211.h02;
 
 import java.util.Arrays;
 
+/**
+ * LexScan, separates string into tokens
+ * @author Gudoy, Alessandra
+ */
+
 public class LexScan {
 
 	public static void main(String[] args) {
@@ -20,7 +25,17 @@ public class LexScan {
 		
 	}
 	
-	
+	/**
+	 * Returns a string of tokens given a string input
+	 * A sequence of characters is considered a token when:
+	 * CASE 1: the first character of a sequence returns true for isJavaIdentifierStart, 
+	 * 		and following characters return true for isJavaIdentifierPart
+	 * CASE 2: a substring is a sequence of characters that return true for isDigit()
+	 * CASE 3: any substring of length 1 for which isWhiteSpace returns false
+	 * 
+	 * @param str, string to be separated into tokens
+	 * @return an array of Strings where each element is a token
+	 */
 	public static String[] lexicalScanner(String str) {
 		
 		str.trim();
@@ -128,6 +143,10 @@ public class LexScan {
 			}
 		}
 		
+//		System.out.println(" *** PRINTING *** ");
+//		System.out.println("STR: " + str);
+//		System.out.println("ARR: " + Arrays.deepToString(Arrays.copyOf(result, numTokens)));
+		
 		return Arrays.copyOf(result, numTokens);
 	}
 	
@@ -146,8 +165,11 @@ public class LexScan {
 		
 		boolean test4 = Arrays.equals(lexicalScanner("a18 19b 2c0 d2e f21"), 
 				new String[] { "a18", "19", "b", "2", "c0", "d2e", "f21" });;
+				
+		boolean test5 = Arrays.equals(lexicalScanner("<>a, >ad32, 324 < a"), 
+				new String[] {"<", ">", "a", ",", ">", "ad32", ",", "324", "<", "a"});
 		
-		return test1 && test2 && test3 && test4;
+		return test1 && test2 && test3 && test4 && test5;
 	}
 	
 }
