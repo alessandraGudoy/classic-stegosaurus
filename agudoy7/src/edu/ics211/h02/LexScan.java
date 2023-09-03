@@ -38,7 +38,7 @@ public class LexScan {
 	 */
 	public static String[] lexicalScanner(String str) {
 		
-		str.trim();
+		str = str.trim();
 		
 		String[] result = new String[str.length()];
 		
@@ -142,10 +142,6 @@ public class LexScan {
 				
 			}
 		}
-		
-//		System.out.println(" *** PRINTING *** ");
-//		System.out.println("STR: " + str);
-//		System.out.println("ARR: " + Arrays.deepToString(Arrays.copyOf(result, numTokens)));
 		
 		return Arrays.copyOf(result, numTokens);
 	}
