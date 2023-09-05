@@ -92,8 +92,8 @@ public class LexScan {
 					numTokens += 1;
 					tmp = "";
 					
-					starter = i<str.length()-1 ? Character.isJavaIdentifierStart(str.charAt(i+1)) : starter;
-					startingDigit = i<str.length()-1 ? Character.isDigit(str.charAt(i+1)) : startingDigit;
+					starter = Character.isJavaIdentifierStart(str.charAt(i+1));
+					startingDigit = Character.isDigit(str.charAt(i+1));
 					
 				} else if(Character.isJavaIdentifierStart(current)) {	// CASE 1: if isJavaIdentifierStart(), build token
 					
