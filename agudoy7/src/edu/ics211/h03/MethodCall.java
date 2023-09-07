@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class MethodCall extends BasicStatement{
 
-	public MethodCall(String[] tokens) {
+	public MethodCall(String[] tokens) throws InvalidStatementException {
 		Objects.requireNonNull(tokens);
 		
 		if(!isJavaIdentifier(tokens[0]) || !tokens[1].equals("(") ||

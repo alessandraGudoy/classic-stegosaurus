@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Conditional extends CompoundStatement{
 
-	public Conditional(String[] tokens) {
+	public Conditional(String[] tokens) throws InvalidStatementException {
 		
 		Objects.requireNonNull(tokens);
 		
