@@ -8,7 +8,7 @@ public abstract class Statement implements StatementInterface{
 	
 	
 	public int numTokens() {
-		return tokens.length;
+		return this.tokens.length;
 	}
 	
 	
