@@ -14,7 +14,7 @@ public class Assignment extends BasicStatement{
 		Objects.requireNonNull(tokens);
 		
 		if(!isJavaIdentifier(tokens[0]) || !tokens[1].equals("=") || !tokens[tokens.length-1].equals(";")) {
-			throw new RuntimeException();
+			throw new InvalidStatementException();
 		}
 		
 		this.tokens = tokens;
@@ -22,10 +22,7 @@ public class Assignment extends BasicStatement{
 	
 	
 	public String getVariable() {
-		
-		
-		
-		return null;
+		return this.tokens[0];
 	}
 
 }

@@ -13,7 +13,7 @@ public class WhileLoop extends CompoundStatement{
 		Objects.requireNonNull(tokens);
 		
 		if(!tokens[0].equals("while") || !tokens[1].equals("(")) {
-			throw new RuntimeException();
+			throw new InvalidStatementException();
 		}
 		
 		this.tokens = tokens;

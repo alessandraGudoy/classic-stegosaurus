@@ -15,7 +15,7 @@ public class MethodCall extends BasicStatement{
 		if(!isJavaIdentifier(tokens[0]) || !tokens[1].equals("(") ||
 				!tokens[tokens.length-2].equals(")") || !tokens[tokens.length-1].equals(";")) {
 			
-			throw new RuntimeException();
+			throw new InvalidStatementException();
 		}
 		
 		this.tokens = tokens;
@@ -23,10 +23,7 @@ public class MethodCall extends BasicStatement{
 	
 	
 	public String getMethodName() {
-		
-		
-		
-		return null;
+		return this.tokens[0];
 	}
 	
 }

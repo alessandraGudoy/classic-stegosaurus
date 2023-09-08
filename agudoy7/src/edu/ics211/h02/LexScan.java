@@ -11,17 +11,17 @@ public class LexScan {
 
 	public static void main(String[] args) {
 		
-		System.out.println("Name: Alessandra Gudoy");
-		
-		boolean test = unitTest();
-		
-		System.out.println();
-		
-		if(test) {
-			System.out.println("SUCCESS");
-		} else {
-			System.out.println("TEST FAILED");
-		}
+//		System.out.println("Name: Alessandra Gudoy");
+//		
+//		boolean test = unitTest();
+//		
+//		System.out.println();
+//		
+//		if(test) {
+//			System.out.println("SUCCESS");
+//		} else {
+//			System.out.println("TEST FAILED");
+//		}
 		
 	}
 	
@@ -36,7 +36,7 @@ public class LexScan {
 	 * @param str, string to be separated into tokens
 	 * @return an array of Strings where each element is a token
 	 */
-	public static String[] lexicalScanner(String str) {
+	public String[] lexicalScanner(String str) {
 		
 		str = str.trim();
 		
@@ -147,25 +147,25 @@ public class LexScan {
 	}
 	
 	
-	public static boolean unitTest() {
-		
-		boolean test1 = Arrays.equals(lexicalScanner("a2 = a1 + b22;"), 
-				new String[] { "a2", "=", "a1", "+", "b22", ";"});
-		
-		boolean test2 = Arrays.equals(lexicalScanner("if (a++ < 2)"), 
-				new String[] { "if", "(", "a", "+", "+", "<", "2", ")" });
-		
-		boolean test3 = Arrays.equals(lexicalScanner("a b c d e f g h i j k l m n o p q r s t u v w x y z"), 
-				new String[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-						"n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"});;
-		
-		boolean test4 = Arrays.equals(lexicalScanner("a18 19b 2c0 d2e f21"), 
-				new String[] { "a18", "19", "b", "2", "c0", "d2e", "f21" });;
-				
-		boolean test5 = Arrays.equals(lexicalScanner("<>a, >ad32, 324 < a"), 
-				new String[] {"<", ">", "a", ",", ">", "ad32", ",", "324", "<", "a"});
-		
-		return test1 && test2 && test3 && test4 && test5;
-	}
+//	public static boolean unitTest() {
+//		
+//		boolean test1 = Arrays.equals(lexicalScanner("a2 = a1 + b22;"), 
+//				new String[] { "a2", "=", "a1", "+", "b22", ";"});
+//		
+//		boolean test2 = Arrays.equals(lexicalScanner("if (a++ < 2)"), 
+//				new String[] { "if", "(", "a", "+", "+", "<", "2", ")" });
+//		
+//		boolean test3 = Arrays.equals(lexicalScanner("a b c d e f g h i j k l m n o p q r s t u v w x y z"), 
+//				new String[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+//						"n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"});;
+//		
+//		boolean test4 = Arrays.equals(lexicalScanner("a18 19b 2c0 d2e f21"), 
+//				new String[] { "a18", "19", "b", "2", "c0", "d2e", "f21" });;
+//				
+//		boolean test5 = Arrays.equals(lexicalScanner("<>a, >ad32, 324 < a"), 
+//				new String[] {"<", ">", "a", ",", ">", "ad32", ",", "324", "<", "a"});
+//		
+//		return test1 && test2 && test3 && test4 && test5;
+//	}
 	
 }

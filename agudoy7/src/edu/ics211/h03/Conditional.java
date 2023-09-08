@@ -22,7 +22,7 @@ public class Conditional extends CompoundStatement{
 		}
 		
 		if(!tokens[0].equals("if") || !tokens[1].equals("(") || !tokens[tokens.length-1].equals("}") || !elseFound) {
-			throw new RuntimeException();
+			throw new InvalidStatementException();
 		}
 		
 		
