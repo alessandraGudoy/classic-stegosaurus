@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Conditional extends CompoundStatement{
 	
-	public Conditional() {}
+	public Conditional() { super(); }
 
 	public Conditional(String[] tokens) throws InvalidStatementException {
 		
