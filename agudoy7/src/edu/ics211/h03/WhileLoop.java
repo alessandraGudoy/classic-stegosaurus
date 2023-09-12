@@ -8,6 +8,8 @@ import java.util.Objects;
  */
 
 public class WhileLoop extends CompoundStatement{
+	
+	public WhileLoop() {}
 
 	public WhileLoop(String[] tokens) throws InvalidStatementException {
 		Objects.requireNonNull(tokens);

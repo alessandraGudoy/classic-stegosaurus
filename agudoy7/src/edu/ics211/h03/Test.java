@@ -20,8 +20,14 @@ public class Test {
 		
 		Conditional statement = new Conditional(zArr);
 		
+		MethodCall method = new MethodCall(lex.lexicalScanner("methodName(asdf);"));
+		//MethodCall notMethod = new MethodCall(lex.lexicalScanner("2(sd)"));
 		
-		System.out.println(x.toString());
-		System.out.println(statement.toString());
+		WhileLoop whileLoop = new WhileLoop(lex.lexicalScanner("while(true)"));
+		
+		
+		System.out.print(x.getToken(0));
+		System.out.print(x.getVariable());
+		System.out.println(method.toString());
 	}
 }

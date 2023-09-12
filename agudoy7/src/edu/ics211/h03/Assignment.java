@@ -9,7 +9,11 @@ import java.util.Objects;
 
 public class Assignment extends BasicStatement{
 	
+	public Assignment() {}
+	
 	public Assignment(String[] tokens) throws InvalidStatementException {
+		
+		super();
 		
 		Objects.requireNonNull(tokens);
 		

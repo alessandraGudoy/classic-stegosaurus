@@ -8,6 +8,8 @@ import java.util.Objects;
  */
 
 public class Conditional extends CompoundStatement{
+	
+	public Conditional() {}
 
 	public Conditional(String[] tokens) throws InvalidStatementException {
 		
