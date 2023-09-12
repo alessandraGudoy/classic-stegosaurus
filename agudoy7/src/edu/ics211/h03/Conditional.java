@@ -19,7 +19,7 @@ public class Conditional extends CompoundStatement{
 		
 		for(int i=2; i<tokens.length-1; i++) {
 			if(tokens[i].equals("else")) {
-			elseFound = true;
+				elseFound = true;
 			}
 		}
 		

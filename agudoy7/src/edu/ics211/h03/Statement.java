@@ -9,6 +9,9 @@ public abstract class Statement implements StatementInterface{
 
 	protected String[] tokens;
 	
+	public Statement() {}
+	
+	
 	public abstract boolean isCompound();
 	
 	
