@@ -31,7 +31,8 @@ public class hw04 {
 
 	/**
 	 * Sorts array using Selection Sort algorithm
-	 * Looping through array and selecting next smallest char to sort the array
+	 * Looping through array and selecting next smallest char in unsorted array
+	 * and moving it to the sorted part of the array
 	 * 
 	 * @param a the array of characters to sort
 	 */
@@ -75,6 +76,8 @@ public class hw04 {
 
 	/**
 	 * Sorts array using Bubble Sort algorithm
+	 * Looping though array and swapping adjacent elements to sort the array
+	 * which sorts the array starting from the end to the beginning
 	 * 
 	 * @param a the array of characters to sort
 	 */
@@ -95,7 +98,8 @@ public class hw04 {
 	
 	/**
 	 * Sorts array using Insertion Sort algorithm
-	 * Looping through array and inserting next element into correct index
+	 * Looping through array and inserting next element of unsorted part of the array 
+	 * into the correct position of the sorted part of the array
 	 * 
 	 * @param a the array of characters to sort
 	 */
@@ -142,6 +146,7 @@ public class hw04 {
 			System.out.println("\'" + s + "\' bubble sorts to \'" + sortChars(s, SortType.BubbleSort) + "\'");
 			System.out.println("\'" + s + "\' insertion sorts to \'" + sortChars(s, SortType.InsertionSort) + "\'");
 			System.out.println("\'" + s + "\' has characters \'" + sortChars(s, SortType.SelectUnique) + "\'");
+			System.out.println();
 		}
 	}
 }
