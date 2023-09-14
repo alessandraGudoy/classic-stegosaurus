@@ -30,23 +30,23 @@ public class hw04 {
 	
 
 	/**
-	 * Sorts array through Selection Sort algorithm
+	 * Sorts array using Selection Sort algorithm
 	 * Looping through array and selecting next smallest char to sort the array
 	 * 
 	 * @param a the array of characters to sort
 	 */
 	public static void selectionSort(char[] a) {
 		
-		for(int i=0; i<a.length; i++) {		// starting at an index
+		for(int i=0; i<a.length-1; i++) {		// starting at an index
+			int smallest = i;
 			
-			for(int j=i; j<a.length; j++) {	// loop through the rest of array and find the smallest char
-				
-				if(a[j] < a[i]) { 			// if element is smaller than current element, swap the elements
-					swap(a, i, j); 
+			for(int j=i+1; j<a.length; j++) {	// loop through the rest of array and find the smallest char
+				if(a[j] < a[smallest]) { 		// if element is smaller than current element, swap the elements
+					smallest = j;
 				}
-				
 			}
 			
+			swap(a, i, smallest);
 		}
 		
 	}
@@ -79,9 +79,23 @@ public class hw04 {
 	}
 	
 	
-	// TODO
+	/**
+	 * Sorts array using Insertion Sort algorithm
+	 * Looping through array and inserting next element into correct index
+	 * 
+	 * @param a the array of characters to sort
+	 */
 	public static void insertionSort(char[] a) {
-		// student must implement
+		
+		for(int i=1; i<a.length; i++) {				// starting at an index
+			
+			for(int j=i-1; j>=0; j--) {				// working backwards (from current index),
+				if(a[j] > a[j+1]) {					// insert element into appropriate index
+					swap(a, j+1, j);
+				}
+			}
+			
+		}
 	}
 	
 
@@ -110,10 +124,10 @@ public class hw04 {
 			a[0] = "the quick brown fox jumps over the lazy dog";
 		}
 		for (String s : a) {
-			System.out.println("\'" + s + "\' selection sorts to \'" + sortChars(s, SortType.SelectionSort) + "\'");
-			System.out.println("\'" + s + "\' bubble sorts to \'" + sortChars(s, SortType.BubbleSort) + "\'");
-			System.out.println("\'" + s + "\' insertion sorts to \'" + sortChars(s, SortType.InsertionSort) + "\'");
-			System.out.println("\'" + s + "\' has characters \'" + sortChars(s, SortType.SelectUnique) + "\'");
+//			System.out.println("\'" + s + "\' selection sorts to \'" + sortChars(s, SortType.SelectionSort) + "\'");
+//			System.out.println("\'" + s + "\' bubble sorts to \'" + sortChars(s, SortType.BubbleSort) + "\'");
+//			System.out.println("\'" + s + "\' insertion sorts to \'" + sortChars(s, SortType.InsertionSort) + "\'");
+//			System.out.println("\'" + s + "\' has characters \'" + sortChars(s, SortType.SelectUnique) + "\'");
 		}
 	}
 }
