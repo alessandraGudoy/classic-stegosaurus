@@ -29,9 +29,26 @@ public class hw04 {
 	}
 	
 
-	// TODO
+	/**
+	 * Sorts array through Selection Sort algorithm
+	 * Looping through array and selecting next smallest char to sort the array
+	 * 
+	 * @param a the array of characters to sort
+	 */
 	public static void selectionSort(char[] a) {
-		// student must implement
+		
+		for(int i=0; i<a.length; i++) {		// starting at an index
+			
+			for(int j=i; j<a.length; j++) {	// loop through the rest of array and find the smallest char
+				
+				if(a[j] < a[i]) { 			// if element is smaller than current element, swap the elements
+					swap(a, i, j); 
+				}
+				
+			}
+			
+		}
+		
 	}
 
 	
