@@ -52,10 +52,24 @@ public class hw04 {
 	}
 
 	
-	// TODO		// like selection sort, but only returns unique elements
+	/**
+	 * Returns a string of an array's unique character sorted out
+	 * 
+	 * @param a the array of characters to sort and create a String of its unique characters
+	 * @return String that is sorted containing the unique characters in the array
+	 */
 	public static String selectUnique(char[] a) {
-		// student must implement
-		return new String(a); // this string is not sorted!
+		selectionSort(a);						// sort array using implemented selectionSort(char[] a) method
+		
+		String result = "";
+		
+		for(int i=0; i<a.length; i++) {			// loop through array
+			if(result.indexOf(a[i]) == -1) {	// if result does not contain element, add it to string
+				result += a[i];
+			}
+		}
+		
+		return result;							// return result
 	}
 	
 
