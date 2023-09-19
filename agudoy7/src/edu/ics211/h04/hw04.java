@@ -1,7 +1,5 @@
 package edu.ics211.h04;
 
-import java.io.FileNotFoundException;
-
 /**
  * hw04, Selection Sort, Bubble Sort, and Insertion Sort
  * 
