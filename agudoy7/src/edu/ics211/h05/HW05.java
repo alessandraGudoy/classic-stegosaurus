@@ -12,14 +12,16 @@ import java.util.HexFormat;
 public class HW05 {
 	
 	private static String[] hexDigits = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
-			"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "l", "m", "n",
+			"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
 			"o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
 	
 	public static void main(String[] args) {
 		
+		System.out.println(convert(325624, 36));
+		
 		// Printing first 31 ternary numbers
-		System.out.println("First 31 ternary numbers");
+		System.out.println("Printing first 31 ternary numbers");
 		System.out.println(Arrays.deepToString(firstTernaryNumbers(31)));
 		
 		// Printing 500th to 524th hexadecimal numbers
@@ -29,6 +31,22 @@ public class HW05 {
 		for(int i=500; i<525; i++) {
 			System.out.print(hexValues[i] + " ");
 		}
+		
+		// Printing first 12 fib3 numbers
+		System.out.println(); System.out.println();
+		System.out.println("Printing first 12 of fib3 numbers");
+		System.out.println(fib3(12));
+	}
+	
+	
+	public static String convert(int n, int base) {
+		
+		if(n < base) {
+			return ("" + hexDigits[n]);
+		} else {
+			return convert(n/base, base) + hexDigits[n%base];
+		}
+		
 	}
 
 	
@@ -61,7 +79,7 @@ public class HW05 {
 		if(n < 16) {
 			return ("" + hexDigits[n]);
 		} else {
-			return toBase16( n / 16 ) + hexDigits[n%16];
+			return toBase16(n / 16) + hexDigits[n%16];
 		}
 		
 	}
@@ -76,6 +94,15 @@ public class HW05 {
 		}
 		
 		return result;
+	}
+	
+	
+	public static int fib3(int n) {
+		if(n <= 3) {
+			return 1;
+		} else {
+			return fib3(n-1) + fib3(n-2) + fib3(n-3);
+		}
 	}
 	
 	
