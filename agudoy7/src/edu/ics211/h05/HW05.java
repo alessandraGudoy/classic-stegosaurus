@@ -35,7 +35,7 @@ public class HW05 {
 		// Printing first 12 fib3 numbers
 		System.out.println(); System.out.println();
 		System.out.println("Printing first 12 of fib3 numbers");
-		System.out.println(fib3(12));
+		System.out.println(Arrays.deepToString(firstFib3(12)));
 	}
 	
 	
@@ -98,11 +98,23 @@ public class HW05 {
 	
 	
 	public static int fib3(int n) {
-		if(n <= 3) {
+		if(n < 3) {
 			return 1;
 		} else {
 			return fib3(n-1) + fib3(n-2) + fib3(n-3);
 		}
+	}
+	
+	
+	public static String[] firstFib3(int n) {
+		
+		String[] result = new String[n];
+		
+		for(int i=0; i<n; i++) {
+			result[i] = String.valueOf(fib3(i));
+		}
+		
+		return result;
 	}
 	
 	
