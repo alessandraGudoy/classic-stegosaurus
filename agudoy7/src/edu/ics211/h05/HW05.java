@@ -5,8 +5,15 @@ import java.util.HexFormat;
 
 /*
  * HW05, Recursion
+ * 	Convert decimal numbers up to base-36
+ * 	Get first n terms of ternary, hex, and fib3 sequences
  * 
  * @author Alessandra Gudoy
+ * 
+ * Runtime Analysis:
+ * 			Runtime of intToString(): O(log(n))
+ * 			Runtime of fib3(): 		  O(3^n)
+ * 
  */
 
 public class HW05 {
@@ -17,8 +24,6 @@ public class HW05 {
 
 	
 	public static void main(String[] args) {
-		
-		System.out.println(convert(325624, 36));
 		
 		// Printing first 31 ternary numbers
 		System.out.println("Printing first 31 ternary numbers");
@@ -39,9 +44,15 @@ public class HW05 {
 	}
 	
 	
+	/**
+	 * Converts the given integer in base-10 to the base given and returns the conversion
+	 * 
+	 * @param n integer to be converted
+	 * @param base the base to convert n to, where base>1
+	 */
 	public static String convert(int n, int base) {
 		
-		if(n < base) {
+		if(n < base) {											// base case
 			return ("" + hexDigits[n]);
 		} else {
 			return convert(n/base, base) + hexDigits[n%base];
@@ -61,7 +72,12 @@ public class HW05 {
 		
 	}
 	
-
+	
+	/**
+	 * Creates and returns an array of strings representing the first n ternary numbers
+	 * 
+	 * @param n = first n terms to print
+	 */
 	public static String[] firstTernaryNumbers(int n) {
 
 		String[] result = new String[n];
@@ -74,6 +90,12 @@ public class HW05 {
 	}
 	
 	
+	/**
+	 * Converts the given integer in base-10 to the base-16
+	 * Modified intToString() code
+	 * 
+	 * @param n integer to be converted
+	 */
 	public static String toBase16(int n) {
 		
 		if(n < 16) {
@@ -85,6 +107,11 @@ public class HW05 {
 	}
 	
 	
+	/**
+	 * Creates and returns an array of strings representing the first n hexadecimal numbers
+	 * 
+	 * @param n = first n terms to print
+	 */
 	public static String[] firstHexNumbers(int n) {
 		
 		String[] result = new String[n];
@@ -97,6 +124,12 @@ public class HW05 {
 	}
 	
 	
+	/**
+	 * Calculates and returns the nth fib3 number where it is the sum of the previous three terms
+	 * fib(n) = fib(n-1) + fib(n-2) + fib(n-3)
+	 * 
+	 * @param n = nth term to calculate
+	 */
 	public static int fib3(int n) {
 		if(n < 3) {
 			return 1;
@@ -106,6 +139,11 @@ public class HW05 {
 	}
 	
 	
+	/**
+	 * Creates and returns an array of strings representing the first n fib3 numbers
+	 * 
+	 * @param n = first n terms to print
+	 */
 	public static String[] firstFib3(int n) {
 		
 		String[] result = new String[n];
