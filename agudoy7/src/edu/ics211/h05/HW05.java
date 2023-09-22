@@ -49,6 +49,7 @@ public class HW05 {
 	 * 
 	 * @param n integer to be converted
 	 * @param base the base to convert n to, where base>1
+	 * @return String representing converted int n in given base
 	 */
 	public static String convert(int n, int base) {
 		
@@ -77,6 +78,7 @@ public class HW05 {
 	 * Creates and returns an array of strings representing the first n ternary numbers
 	 * 
 	 * @param n = first n terms to print
+	 * @return array of Strings representing the first n ternary numbers
 	 */
 	public static String[] firstTernaryNumbers(int n) {
 
@@ -95,6 +97,7 @@ public class HW05 {
 	 * Modified intToString() code
 	 * 
 	 * @param n integer to be converted
+	 * @return String representing the converted int n in base-16
 	 */
 	public static String toBase16(int n) {
 		
@@ -111,6 +114,7 @@ public class HW05 {
 	 * Creates and returns an array of strings representing the first n hexadecimal numbers
 	 * 
 	 * @param n = first n terms to print
+	 * @return array of Strings representing the first n hexadecimal numbers
 	 */
 	public static String[] firstHexNumbers(int n) {
 		
@@ -129,6 +133,7 @@ public class HW05 {
 	 * fib(n) = fib(n-1) + fib(n-2) + fib(n-3)
 	 * 
 	 * @param n = nth term to calculate
+	 * @return int representing the nth term of fib3 sequence
 	 */
 	public static int fib3(int n) {
 		if(n < 3) {
@@ -143,6 +148,7 @@ public class HW05 {
 	 * Creates and returns an array of strings representing the first n fib3 numbers
 	 * 
 	 * @param n = first n terms to print
+	 * @return array of Strings representing the first n fib3 numbers
 	 */
 	public static String[] firstFib3(int n) {
 		
