@@ -24,7 +24,7 @@ public class HW05 {
 
 	
 	public static void main(String[] args) {
-		
+		/*
 		// Printing first 31 ternary numbers
 		System.out.println("Printing first 31 ternary numbers");
 		System.out.println(Arrays.deepToString(firstTernaryNumbers(31)));
@@ -41,6 +41,15 @@ public class HW05 {
 		System.out.println(); System.out.println();
 		System.out.println("Printing first 12 of fib3 numbers");
 		System.out.println(Arrays.deepToString(firstFib3(12)));
+		*/
+		
+		// for(int i=-10; i<4; ++i) {
+		// 	System.out.println(i + " " + fib3(i));
+		// }
+		// System.out.println(fib3(4));
+		// System.out.println(fib3(10));
+		System.out.println(convert(15,16));
+		System.out.println(convert(35,36));
 	}
 	
 	
@@ -58,7 +67,6 @@ public class HW05 {
 		} else {
 			return convert(n/base, base) + hexDigits[n%base];
 		}
-		
 	}
 
 	
