@@ -1,10 +1,8 @@
 package edu.ics211.h06;
 
-import java.util.Arrays;
-
 public class Test {
     public static void main(String[] args){
-        OffsetArrayList<String> arr = new OffsetArrayList<>(0, 1);
+        OffsetArrayList<String> arr = new OffsetArrayList<>(1, 1);
 
         arr.add("a");
         arr.add("c");
@@ -17,8 +15,6 @@ public class Test {
         System.out.println(arr.remove(4));
         System.out.println(arr.toString());
         System.out.println(arr.size());
-
-        arr.print();
         
     }
 

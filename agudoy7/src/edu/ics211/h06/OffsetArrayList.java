@@ -1,7 +1,5 @@
 package edu.ics211.h06;
 
-import java.util.Arrays;
-
 /*
  * OffsetArrayList<E>
  * 
@@ -14,6 +12,18 @@ import java.util.Arrays;
  *  Add at end:				O(1)			O(n)				O(n)
  *  Remove at index:		O(1)			O(n)				O(n)
  * 
+ * 	Best case for adding at an index is constant time, O(1), when the array is large enough and we are adding to the end of the array, 
+ * 	therefore, there is no need to duplicate the array or shift elements around or when the array is empty. The worst case for adding at an index is 
+ * 	linear time, O(n), when the array is not large enough and/or we are adding to the beginning of the array (so we have to shift the elements forward to
+ * 	make room for the new element at the front). On average, it will be linear time when adding to the middle of th array.
+ * 
+ * 	Best case for adding at the end is constant time, O(1), when the array is large enough and we don't need to copy the array. Worst case is linear time, O(n),
+ * 	when the array is not large enough and we do need to copy the array. On average, it will be less than O(n), but still more than constant time, but taking out
+ * 	constants, it will be linear time, O(n).
+ * 
+ * 	Best case for removing an index is constant time, O(1), when we are removing at the end of the array and there is no need to shift the elements.
+ * 	Worst case is when we are removing at the beginning of the array and have to shift all elements to the front. On average, it will be greater than constant
+ * 	time, but less than O(n), but still be linear time when we are removing in the middle of the array.
  * 
  * 
  * whenever arrays.copyOf(), O(n)
@@ -42,7 +52,7 @@ public class OffsetArrayList<E> {
 		if(initialCapacity < 0){
 			throw new NegativeArraySizeException("Initial Capacity must be at least 0");
 		}else{
-			initialCapacity = initialCapacity == 0 ? 1 : initialCapacity;
+			//initialCapacity = initialCapacity == 0 ? 1 : initialCapacity;
 			this.initialCapacity = initialCapacity;
 			this.offset = offset;
 
@@ -168,7 +178,7 @@ public class OffsetArrayList<E> {
 	
 
 	public void extendArray(){
-		E[] tmp = (E[]) new Object[capacity() * 2];
+		E[] tmp = (E[]) new Object[capacity() * 2 + 1];
 
 		for(int i=0; i<size; i++){
 			tmp[i] = data[i];
@@ -203,11 +213,6 @@ public class OffsetArrayList<E> {
 
 
 		return test1 && test2 && test3;
-	}
-
-
-	public void print(){
-		System.out.println(Arrays.deepToString(data));
 	}
 	
 }
