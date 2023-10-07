@@ -26,7 +26,6 @@ package edu.ics211.h06;
  * 	time, but less than O(n), but still be linear time when we are removing in the middle of the array.
  * 
  * 
- * whenever arrays.copyOf(), O(n)
  */
 
 @SuppressWarnings("unchecked")
