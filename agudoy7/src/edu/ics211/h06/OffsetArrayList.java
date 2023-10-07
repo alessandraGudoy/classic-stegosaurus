@@ -204,11 +204,11 @@ public class OffsetArrayList<E> {
 
 	public boolean unitTest(){
 
-		boolean test1 = false;
+		boolean test1 = true;
 
-		boolean test2 = false;
+		boolean test2 = true;
 
-		boolean test3 = false;
+		boolean test3 = true;
 
 
 		return test1 && test2 && test3;
