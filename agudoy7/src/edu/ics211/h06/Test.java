@@ -4,17 +4,18 @@ import java.util.Arrays;
 
 public class Test {
     public static void main(String[] args){
-        OffsetArrayList<String> arr = new OffsetArrayList<>(4, -1);
+        OffsetArrayList<String> arr = new OffsetArrayList<>(0, 0);
 
-        System.out.println(arr.capacity());
-        System.out.println(arr.add("a"));
-        System.out.println(arr.add("b"));
-        System.out.println(arr.add("c"));
-        System.out.println(arr.add("d"));
-        
-        System.out.println(arr.toString());
+        arr.add("a");
+        arr.add("c");
+        arr.add(0,"b");
+        arr.add("d");
         arr.add(0,"e");
         System.out.println(arr.toString());
+
+        System.out.println(arr.get(3));
+        System.out.println(arr.get(0));
+
         //arr.print();
         
     }

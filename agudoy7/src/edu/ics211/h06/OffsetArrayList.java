@@ -72,8 +72,13 @@ public class OffsetArrayList<E> {
 	public int offest() { return offset; }
 	
 	
+	/**
+	 * Return the element at given index
+	 * @param index of element to return
+	 * @return element at given index
+	 */
 	public E get(int index) {
-		if(offset > index || index >= size() - offset){
+		if(index < offset || index >= size() + offset){
 			throw new IndexOutOfBoundsException("INDEX OUT OF BOUNDS");
 		} else {
 			return data[index - offset];
