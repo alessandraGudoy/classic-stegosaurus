@@ -86,8 +86,14 @@ public class OffsetArrayList<E> {
 	}
 	
 	
+	/**
+	 * Sets current element at given index to new element and returns previous element
+	 * @param index of element to change to new element
+	 * @param element that replaces current element at given index
+	 * @return previous element at given index
+	 */
 	public E set(int index, E element) {
-		if(offset > index || index >= size() + offset){
+		if(index < offset || index >= size() + offset){
 			throw new IndexOutOfBoundsException("INDEX OUT OF BOUNDS");
 		} else {
 			E tmp = data[index - offset];
