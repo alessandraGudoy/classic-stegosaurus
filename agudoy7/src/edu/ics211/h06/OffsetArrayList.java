@@ -22,24 +22,27 @@ import java.util.Arrays;
 @SuppressWarnings("unchecked")
 public class OffsetArrayList<E> {
 	
-	protected E[] data;
-	protected int size;
-	protected final int initialCapacity;
-	protected final int offset;
+	protected E[] data;						// array of data
+	protected int size;						// numer of elements inside array
+	protected final int initialCapacity;	// initial capacity of array
+	protected final int offset;				// offset of indeces
 	
-	public OffsetArrayList() {
-		this.initialCapacity = 16;
-		this.offset = 0;
+	public OffsetArrayList() {				// default constructor
+		this.initialCapacity = 16;			// initial capacity is 16
+		this.offset = 0;					// offset is 0
 
 		data = (E[]) new Object[16];
 		this.size = 0;
 	}
 
+	// constructor: sets initial capacity and offset
+	// initial capacity must be at least 0
 	public OffsetArrayList(int initialCapacity, int offset) {
 
 		if(initialCapacity < 0){
 			throw new NegativeArraySizeException("Initial Capacity must be at least 0");
 		}else{
+			initialCapacity = initialCapacity == 0 ? 1 : initialCapacity;
 			this.initialCapacity = initialCapacity;
 			this.offset = offset;
 
@@ -49,74 +52,93 @@ public class OffsetArrayList<E> {
 
 	}
 	
-	
+	/**
+	 * Return the number of elements put in the array
+	 * @return size, the number of elements put in the array
+	 */
 	public int size() { return size; }
 	
-	
+
+	/**
+	 * Return the greatest number of elements that can be put in the array
+	 * @return capacity, the length of the array holding the elements
+	 */
 	public int capacity() { return data.length; }
 	
-	
+	/**
+	 * Return the offset of the indeces
+	 * @return offset, how much indeces are offset by
+	 */
 	public int offest() { return offset; }
 	
 	
 	public E get(int index) {
-		if(offset < index || index >= size() + offset){
+		if(offset > index || index >= size() - offset){
 			throw new IndexOutOfBoundsException("INDEX OUT OF BOUNDS");
 		} else {
-			return data[index + offset];
+			return data[index - offset];
 		}
 	}
 	
 	
 	public E set(int index, E element) {
-		if(offset < index || index >= size() + offset){
+		if(offset > index || index >= size() + offset){
 			throw new IndexOutOfBoundsException("INDEX OUT OF BOUNDS");
 		} else {
-			E tmp = data[index + offset];
-			data[index + offset] = element;
+			E tmp = data[index - offset];
+			data[index - offset] = element;
 
 			return tmp;
 		}
 	}
 	
 	
+	/**
+	 * Return true after adding element to the end of the array
+	 * @param element to add to array
+	 * @return true
+	 */
 	public boolean add(E element) {
 		if(size >= capacity()){
 			extendArray();
 		}
 
-		//size += 1;
-		//data[size] = element;
-		
+		data[size] = element;
+		size += 1;
 
 		return true;
 	}
 	
-	
+
+	/**
+	 * Adds E element at given index, extends array if there is not enough space
+	 * @param index at which E element is to be inserted at
+	 * @param element to add to array at given index
+	 */
 	public void add(int index, E element) {
-		if(offset < index || index >= size() + offset){
+		if(index < offset || index >= size() + offset){
 			throw new IndexOutOfBoundsException("INDEX OUT OF BOUNDS");
 		} else{
-			size += 1;
 
-			if(size > capacity()){
+			if(size >= capacity()){
 				extendArray();
 			}
 
-			for(int i=size; i>index+offset; i--){
+			for(int i=size(); i>index-offset; i--){
 				data[i] = data[i-1];
 			}
 
-			data[index+offset] = element;
+			data[index-offset] = element;
+			size += 1;
 		}
 	}
 	
 	
 	public E remove(int index) {
-		if(offset < index || index >= size() + offset){
+		if(offset > index || index >= size() + offset){
 			throw new IndexOutOfBoundsException("INDEX OUT OF BOUNDS");
 		} else{
-			E tmp = data[index + offset];
+			E tmp = data[index - offset];
 
 			for(int i=index+offset; i<size; i++){
 				data[i] = data[i+1];
@@ -130,9 +152,8 @@ public class OffsetArrayList<E> {
 	
 
 	public void extendArray(){
-		System.out.println("EXTENDING ARRAY");
 		E[] tmp = (E[]) new Object[capacity() * 2];
-		System.out.println(tmp.length);
+
 		for(int i=0; i<size; i++){
 			tmp[i] = data[i];
 		}
@@ -170,7 +191,7 @@ public class OffsetArrayList<E> {
 
 
 	public void print(){
-		Arrays.deepToString(data);
+		System.out.println(Arrays.deepToString(data));
 	}
 	
 }
