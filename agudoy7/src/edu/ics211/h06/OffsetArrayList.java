@@ -145,13 +145,18 @@ public class OffsetArrayList<E> {
 	}
 	
 	
+	/**
+	 * Removes element at given index and returns the removed element
+	 * @param index of element to remove
+	 * @return the removed element at given index
+	 */
 	public E remove(int index) {
-		if(offset > index || index >= size() + offset){
+		if(index < offset || index >= size() + offset){
 			throw new IndexOutOfBoundsException("INDEX OUT OF BOUNDS");
 		} else{
 			E tmp = data[index - offset];
 
-			for(int i=index+offset; i<size; i++){
+			for(int i=index-offset; i<size; i++){
 				data[i] = data[i+1];
 			}
 

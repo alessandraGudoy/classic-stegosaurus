@@ -13,10 +13,12 @@ public class Test {
         arr.add(1,"e");
         System.out.println(arr.toString());
 
-        System.out.println(arr.set(0, "B"));
+        System.out.println(arr.remove(5));
+        System.out.println(arr.remove(4));
         System.out.println(arr.toString());
+        System.out.println(arr.size());
 
-        //arr.print();
+        arr.print();
         
     }
 
