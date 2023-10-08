@@ -11,7 +11,6 @@ public class Test {
         }
         System.out.println(arr.toString());
         
-
         OffsetArrayList<String> arr2 = new OffsetArrayList<>(1, 3);
         for(String str : list){
             arr2.add(3, str);
@@ -25,6 +24,12 @@ public class Test {
             } else{
                 arr3.add(list[i]);
             }
+        }
+        System.out.println(arr3.toString());
+
+
+        while(arr3.size() > 0){
+            System.out.println(arr3.remove(-4));
         }
         System.out.println(arr3.toString());
         
