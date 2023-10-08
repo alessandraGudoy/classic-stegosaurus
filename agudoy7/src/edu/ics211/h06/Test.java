@@ -28,8 +28,18 @@ public class Test {
         System.out.println(arr3.toString());
 
 
-        while(arr3.size() > 0){
-            System.out.println(arr3.remove(-4));
+        // while(arr3.size() > 0){
+        //     System.out.println(arr3.remove(-4));
+        // }
+        // System.out.println(arr3.toString());
+
+        for(int i=3; i<arr2.size() + arr2.offest(); i++){
+            System.out.println(arr2.get(i));
+        }
+        System.out.println(arr2.toString());
+
+        for(int i=arr3.offest(); i<arr3.size() + arr3.offest(); i++){
+            System.out.println(arr3.set(i, "Z"));
         }
         System.out.println(arr3.toString());
         
