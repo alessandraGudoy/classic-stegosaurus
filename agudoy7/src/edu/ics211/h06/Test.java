@@ -14,7 +14,6 @@ public class Test {
 
         OffsetArrayList<String> arr2 = new OffsetArrayList<>(1, 3);
         for(String str : list){
-            System.out.println(str);
             arr2.add(3, str);
         }
         System.out.println(arr2.toString());
