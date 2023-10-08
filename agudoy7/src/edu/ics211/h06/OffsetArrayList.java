@@ -1,5 +1,7 @@
 package edu.ics211.h06;
 
+import java.util.Arrays;
+
 /*
  * OffsetArrayList<E>
  * 
@@ -31,10 +33,10 @@ package edu.ics211.h06;
 @SuppressWarnings("unchecked")
 public class OffsetArrayList<E> {
 	
-	protected E[] data;						// array of data
-	protected int size;						// numer of elements inside array
-	protected final int initialCapacity;	// initial capacity of array
-	protected final int offset;				// offset of indeces
+	private E[] data;						// array of data
+	private int size;						// numer of elements inside array
+	private final int initialCapacity;		// initial capacity of array
+	private final int offset;				// offset of indeces
 	
 	public OffsetArrayList() {				// default constructor
 		this.initialCapacity = 16;			// initial capacity is 16
@@ -51,7 +53,7 @@ public class OffsetArrayList<E> {
 		if(initialCapacity < 0){
 			throw new NegativeArraySizeException("Initial Capacity must be at least 0");
 		}else{
-			//initialCapacity = initialCapacity == 0 ? 1 : initialCapacity;
+			initialCapacity = initialCapacity == 0 ? 1 : initialCapacity;
 			this.initialCapacity = initialCapacity;
 			this.offset = offset;
 
@@ -119,7 +121,7 @@ public class OffsetArrayList<E> {
 	 * @return true
 	 */
 	public boolean add(E element) {
-		if(size >= capacity()){
+		if(size+1 >= capacity()){
 			extendArray();
 		}
 
@@ -128,7 +130,7 @@ public class OffsetArrayList<E> {
 
 		return true;
 	}
-	
+
 
 	/**
 	 * Adds E element at given index, extends array if there is not enough space
@@ -136,7 +138,7 @@ public class OffsetArrayList<E> {
 	 * @param element to add to array at given index
 	 */
 	public void add(int index, E element) {
-		if(index < offset || index >= size() + offset){
+		if(index < offset || index > size() + offset){
 			throw new IndexOutOfBoundsException("INDEX OUT OF BOUNDS");
 		} else{
 
@@ -177,7 +179,7 @@ public class OffsetArrayList<E> {
 	
 
 	public void extendArray(){
-		E[] tmp = (E[]) new Object[capacity() * 2 + 1];
+		E[] tmp = (E[]) new Object[capacity() * 2];
 
 		for(int i=0; i<size; i++){
 			tmp[i] = data[i];
@@ -188,7 +190,6 @@ public class OffsetArrayList<E> {
 	}
 	
 
-	@Override
 	public String toString() {
 		String separator = "";
       	String result = "";
@@ -212,6 +213,10 @@ public class OffsetArrayList<E> {
 
 
 		return test1 && test2 && test3;
+	}
+
+	public void print(){
+		System.out.println(Arrays.toString(data));
 	}
 	
 }
