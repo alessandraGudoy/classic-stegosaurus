@@ -11,7 +11,7 @@ public class Test {
         }
         System.out.println(arr.toString());
         
-        OffsetArrayList<String> arr2 = new OffsetArrayList<>(1, 3);
+        OffsetArrayList<String> arr2 = new OffsetArrayList<>(0, 3);
         for(String str : list){
             arr2.add(3, str);
         }
@@ -34,12 +34,12 @@ public class Test {
         // System.out.println(arr3.toString());
 
         for(int i=3; i<arr2.size() + arr2.offest(); i++){
-            System.out.println(arr2.get(i));
+            System.out.println("Getting: " + arr2.get(i));
         }
         System.out.println(arr2.toString());
 
         for(int i=arr3.offest(); i<arr3.size() + arr3.offest(); i++){
-            System.out.println(arr3.set(i, "Z"));
+            System.out.println("Setting: " + arr3.set(i, "Z"));
         }
         System.out.println(arr3.toString());
         
