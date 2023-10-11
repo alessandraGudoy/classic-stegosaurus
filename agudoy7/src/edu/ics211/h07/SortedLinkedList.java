@@ -1,5 +1,12 @@
 package edu.ics211.h07;
 
+/**
+ * SortedLinkedList, A sorted list implemented using a singly-linked list
+ * @author Edo Biagioni
+ * @author Benjamin Strauss
+ * @author Alessandra Gudoy
+ */
+
 public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedListInterface<E>{
 
     protected LinkedNode<E> head;
@@ -41,7 +48,7 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
 
     /* * * LINKED NODE DEFINITION * * */
 
-    /*
+    /**
      * A node in a singly-linked list
      * @author Edo Biagioni
      * @lecture ICS 211 Jan 27 or later
@@ -57,7 +64,7 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
             next = null;
         }
 
-        /*
+        /**
          * Constructor to set node with no successor
          * @param value, the value to be stored by this node
          */
@@ -66,7 +73,7 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
             next = null;
         }
 
-        /*
+        /**
          * Constructor to set node with specified successor (may be null)
          * @param value, the value to be stored by this node
          * @param reference, the next field for this node

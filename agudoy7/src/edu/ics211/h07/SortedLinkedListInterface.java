@@ -1,5 +1,9 @@
 package edu.ics211.h07;
 
+/*
+ * SortedLinkedListInterface
+ * @author Edo Biagioni
+ */
 public interface SortedLinkedListInterface<E extends Comparable<E> > {
 
     int size();

@@ -2,7 +2,7 @@ package edu.ics211.h06;
 
 import java.util.Arrays;
 
-/*
+/**
  * OffsetArrayList<E>
  * 
  * @author Alessandra Gudoy

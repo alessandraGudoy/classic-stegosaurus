@@ -3,7 +3,7 @@ package edu.ics211.h05;
 import java.util.Arrays;
 import java.util.HexFormat;
 
-/*
+/**
  * HW05, Recursion
  * 	Convert decimal numbers up to base-36
  * 	Get first n terms of ternary, hex, and fib3 sequences
