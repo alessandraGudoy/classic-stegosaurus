@@ -1,7 +1,5 @@
 package edu.ics211.h03;
 
-import java.util.Arrays;
-
 import edu.ics211.h02.LexScan;
 
 public class Test {

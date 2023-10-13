@@ -23,7 +23,7 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
 
     //@Override
     public int size() {
-        return 0;
+        return this.size;
     }
 
     //@Override
@@ -31,9 +31,67 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
         return null;
     }
 
+    /** 
+	  * Adds element at the head of the list
+	  * @param value to be added
+	  */
+    private void addAtFront(E value){
+        head = new LinkedNode<E>(value, head);
+        if(tail == null){
+            tail = head;
+        }
+    }
+
+    /** 
+	  * Adds element at the tail of the list.  Assumes (and checks) that tail is not null
+	  * @param value to be added
+	  * @throws RuntimeException if tail is null
+	  */
+    private void addAtEnd(E value){
+        if(tail == null){
+            throw new RuntimeException("Tail is null");
+        }
+        LinkedNode<E> newElement = new LinkedNode<E>(value);
+        tail.next = newElement;
+        tail = newElement;
+    }
+
     //@Override
     public boolean add(E value) {
-        return true;
+        LinkedNode<E> newElement = new LinkedNode<E>(value);
+        LinkedNode<E> current = head;
+        System.out.println();
+        System.out.println("ADDING VALUE: " + newElement.item);
+
+        if(current == null || current.item.compareTo(newElement.item) > 0){
+            addAtFront(value);
+        } else {
+            while(current.next != null && current.item.compareTo(newElement.item) < 0){
+                current = current.next;
+            }
+
+            if(current.item.compareTo(newElement.item) == 0){
+                return false;
+            }
+
+            newElement.next = current.next;
+            current.next = newElement;
+        }
+
+        if(head == tail){
+                tail = newElement;
+        } else {
+            current = head;
+            while(current.next != null){
+                current = current.next;
+            }
+            tail = current;
+        }
+
+
+         size = size + 1;
+         return true;
+        
     }
 
     //@Override
@@ -48,9 +106,15 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
 
     //@Override
     public String toString() {
+        LinkedNode<E> current = head;
         String result = "";
 
-        return result;
+        while(current != null){
+            result = result + current.item + " ";
+            current = current.next;
+        }
+
+        return result.trim();
     }
 
 
@@ -59,8 +123,19 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
     public static void main(String[] args){
         SortedLinkedList<String> list = new SortedLinkedList<String>();
 
+        System.out.println("CURRENT: " + list.toString());
+        System.out.println(list.add("one"));
 
-        System.out.println(list.toString());
+        System.out.println("CURRENT: " + list.toString());
+        System.out.println(list.add("two"));
+
+        System.out.println("CURRENT: " + list.toString());
+        System.out.println(list.add("three"));
+
+        System.out.println("CURRENT: " + list.toString());
+        System.out.println(list.add("two"));
+
+        System.out.println("CURRENT: " + list.toString());
     }
 
     /* * * * * */

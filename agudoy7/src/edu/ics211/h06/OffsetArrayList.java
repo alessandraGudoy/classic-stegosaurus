@@ -75,6 +75,8 @@ public class OffsetArrayList<E> {
 	 * @return capacity, the length of the array holding the elements
 	 */
 	public int capacity() { return data.length; }
+
+	public int getInitialCapacity(){ return initialCapacity; }
 	
 	/**
 	 * Return the offset of the indeces
