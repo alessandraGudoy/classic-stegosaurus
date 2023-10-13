@@ -101,7 +101,18 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
 
     //@Override
     public int indexOf(E value) {
-        return 0;
+        LinkedNode<E> current = head;
+        int index = 0;
+
+        while(current != null){
+            if(current.item == value){
+                return index;
+            }
+            current = current.next;
+            index = index + 1;
+        }
+
+        return -1;
     }
 
     //@Override
@@ -136,6 +147,8 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
         System.out.println(list.add("two"));
 
         System.out.println("CURRENT: " + list.toString());
+
+        System.out.println("two: " + list.indexOf("four"));
     }
 
     /* * * * * */
