@@ -70,8 +70,6 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
     public boolean add(E value) {
         LinkedNode<E> newElement = new LinkedNode<E>(value);
         LinkedNode<E> current = head;
-        System.out.println();
-        System.out.println("ADDING VALUE: " + newElement.item);
 
         if(current == null || current.item.compareTo(newElement.item) > 0){
             addAtFront(value);
@@ -106,7 +104,31 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
 
     //@Override
     public boolean remove(E value) {
-        return true;
+        LinkedNode<E> current = head;
+        LinkedNode<E> previous = null;
+
+        if(head.item == value){
+            head = current.next;
+            size = size - 1;
+            return true;
+        }
+
+        while(current.item != null){
+            if(current.item == value){
+                if(current == tail){
+                    tail = previous;
+                }
+
+                previous.next = previous.next.next;
+                size = size - 1;
+                return true;
+            } else {
+                previous = current;
+                current = current.next;
+            }
+        }
+
+        return false;
     }
 
     //@Override
@@ -144,22 +166,32 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
     public static void main(String[] args){
         SortedLinkedList<String> list = new SortedLinkedList<String>();
 
-        System.out.println("CURRENT: " + list.toString());
+        ///System.out.println("CURRENT: " + list.toString());
         System.out.println(list.add("one"));
 
-        System.out.println("CURRENT: " + list.toString());
+        //System.out.println("CURRENT: " + list.toString());
         System.out.println(list.add("abc"));
 
-        System.out.println("CURRENT: " + list.toString());
+        //System.out.println("CURRENT: " + list.toString());
+        System.out.println(list.add("two"));
+
+        //System.out.println("CURRENT: " + list.toString());
+        System.out.println(list.add("three"));
+
+       // System.out.println("CURRENT: " + list.toString());
         System.out.println(list.add("two"));
 
         System.out.println("CURRENT: " + list.toString());
-        System.out.println(list.add("two"));
 
-        System.out.println("CURRENT: " + list.toString());
-
-        System.out.println("two: " + list.indexOf("four"));
+        System.out.println("Head: " + list.head.item);
+        System.out.println("Tail: " + list.tail.item);
+        System.out.println("indexOf(): " + list.indexOf("four"));
         System.out.println("get(): " + list.get(2));
+        System.out.println("remove(): " + list.remove("abc"));
+        System.out.println("CURRENT: " + list.toString());
+        System.out.println("Head: " + list.head.item);
+        System.out.println("Tail: " + list.tail.item);
+
     }
 
     /* * * * * */
