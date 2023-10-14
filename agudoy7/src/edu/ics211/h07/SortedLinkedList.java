@@ -123,6 +123,9 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
                 size = size - 1;
                 return true;
             } else {
+                if(current.next == null){
+                    return false;
+                }
                 previous = current;
                 current = current.next;
             }
@@ -166,31 +169,25 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
     public static void main(String[] args){
         SortedLinkedList<String> list = new SortedLinkedList<String>();
 
-        ///System.out.println("CURRENT: " + list.toString());
-        System.out.println(list.add("one"));
-
-        //System.out.println("CURRENT: " + list.toString());
-        System.out.println(list.add("abc"));
-
-        //System.out.println("CURRENT: " + list.toString());
-        System.out.println(list.add("two"));
-
-        //System.out.println("CURRENT: " + list.toString());
-        System.out.println(list.add("three"));
-
-       // System.out.println("CURRENT: " + list.toString());
-        System.out.println(list.add("two"));
+        list.add("a");
+        list.add("ba");
+        list.add("aa");
+        list.add("b");
+        list.add("c");
 
         System.out.println("CURRENT: " + list.toString());
-
         System.out.println("Head: " + list.head.item);
         System.out.println("Tail: " + list.tail.item);
-        System.out.println("indexOf(): " + list.indexOf("four"));
+        System.out.println("Size: " + list.size);
+
+        System.out.println("indexOf(): " + list.indexOf("three"));
         System.out.println("get(): " + list.get(2));
-        System.out.println("remove(): " + list.remove("abc"));
+        System.out.println("remove(): " + list.remove("four"));
+
         System.out.println("CURRENT: " + list.toString());
         System.out.println("Head: " + list.head.item);
         System.out.println("Tail: " + list.tail.item);
+        System.out.println("Size: " + list.size);
 
     }
 
