@@ -34,12 +34,23 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
         checkInvariants();
     }
 
-    //@Override
+    /**
+     * Returns the size of the list (number of unique elements)
+     * 
+     * @return int representing the size of the list (number of elements)
+     */
     public int size() {
         return this.size;
     }
 
-    //@Override
+    /**
+     * Gets the element at given index
+     * 
+     * @param index, index/location of element to get
+     * @return E, the value of the element at given index
+     * @throws RuntimeException if index out of bounds, index must be between 0 inclusive
+     *  and the size of the array exclusive (0 <= index < size)
+     */
     public E get(int index) {
         if(index >= size || index < 0){
             throw new RuntimeException("invalid index");
@@ -79,7 +90,13 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
         tail = newElement;
     }
 
-    //@Override
+    /**
+     * Adds element to the list if it does not already exist,
+     *  list being sorted is questionable
+     * 
+     * @param value, value of node to be added to list
+     * @return true if value is added to the list, false if value already exists in list
+     */
     public boolean add(E value) {
         LinkedNode<E> newElement = new LinkedNode<E>(value);
         LinkedNode<E> current = head;
@@ -115,7 +132,12 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
         
     }
 
-    //@Override
+    /**
+     * Removes the node with the given value from the list
+     * 
+     * @param value, value to be removed from list
+     * @return true if value is removed, false if value does not exist in list 
+     */
     public boolean remove(E value) {
         LinkedNode<E> current = head;
         LinkedNode<E> previous = null;
@@ -147,7 +169,13 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
         return false;
     }
 
-    //@Override
+    /**
+     * Returns the index of the given value
+     * 
+     * @param value to find the index of
+     * @return index of the given value, where index of the head starts at 0,
+     *  an int between 0 inclusive and the list's size exclusive, 0 <= index < size
+     */
     public int indexOf(E value) {
         LinkedNode<E> current = head;
         int index = 0;
@@ -163,7 +191,11 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
         return -1;
     }
 
-    //@Override
+    /**
+     * A string representation of the list where the values of the nodes are separated by a space
+     * 
+     * @return a string representation of the values stored in the list
+     */
     public String toString() {
         LinkedNode<E> current = head;
         String result = "";
