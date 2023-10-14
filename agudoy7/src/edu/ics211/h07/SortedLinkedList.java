@@ -148,10 +148,10 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
         System.out.println(list.add("one"));
 
         System.out.println("CURRENT: " + list.toString());
-        System.out.println(list.add("two"));
+        System.out.println(list.add("abc"));
 
         System.out.println("CURRENT: " + list.toString());
-        System.out.println(list.add("three"));
+        System.out.println(list.add("two"));
 
         System.out.println("CURRENT: " + list.toString());
         System.out.println(list.add("two"));
