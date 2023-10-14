@@ -5,6 +5,19 @@ package edu.ics211.h07;
  * @author Edo Biagioni
  * @author Benjamin Strauss
  * @author Alessandra Gudoy
+ * 
+ *          [Best Case]     [Avg Case]      [Worst Case]
+ * Add: 	O(1)            O(n)            O(n)
+ * Remove:  O(1)            O(n)            O(n)
+ * 
+ * Best case for adding is constant time, O(1) for when we are adding to the front of the list,
+ *  where head points to the new node and the new node points to the previous head. Worst case
+ *  and average case is linear time, O(n), is when we are adding to the end of the list 
+ *  and have to go through the entire list.
+ * 
+ * Best case for removing is constant time, O(1), for when we are removing the head, where head
+ *  now points to the node that the previous head pointed to. Worst case and average is linear time,
+ *  O(n), when we need to go through the list to remove a node in the middle or the end.
  */
 
 public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedListInterface<E>{
@@ -182,7 +195,7 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
 
         System.out.println("indexOf(): " + list.indexOf("three"));
         System.out.println("get(): " + list.get(2));
-        System.out.println("remove(): " + list.remove("four"));
+        System.out.println("remove(): " + list.remove("a"));
 
         System.out.println("CURRENT: " + list.toString());
         System.out.println("Head: " + list.head.item);
