@@ -214,8 +214,8 @@ public class SortedLinkedList<E extends Comparable<E> > implements SortedLinkedL
     public static void main(String[] args){
         SortedLinkedList<String> list = new SortedLinkedList<String>();
 
-        list.add("a");
-        list.add("ba");
+        list.add("b");
+        list.add("b");
         list.add("aa");
         list.add("b");
         list.add("c");
