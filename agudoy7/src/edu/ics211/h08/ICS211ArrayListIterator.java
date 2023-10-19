@@ -24,7 +24,7 @@ public class ICS211ArrayListIterator<E> implements Iterator<E>{
 
     @Override
     public boolean hasNext() {
-        return position < this.data.length;
+        return position < data.length;
     }
 
     @Override
