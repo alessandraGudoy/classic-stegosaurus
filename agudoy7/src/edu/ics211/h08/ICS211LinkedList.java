@@ -84,23 +84,25 @@ public class ICS211LinkedList<E> implements Iterable<E> {
         }
 
         @Override
-        public void remove(){                       // TODO
+        public void remove(){
+            // must call next() at least once before calling remove()
             if(previous == null){
                 throw new IllegalStateException();
             }
 
+            // if removing head
             if(previous == head){
-                if(head == tail){
-                    head = null;
+                if(head == tail){   // if only one element in list
+                    head = null;    // set both head and tail to null
                     tail = null;
                 } else{
-                    head = current;
+                    head = current; // set current node to head
                 }
             } else{
                 previous.next = current.next;
             }
 
-            size = size - 1;
+            size = size - 1;        // must decrement size for invariances to hold up
             
         }
     }
