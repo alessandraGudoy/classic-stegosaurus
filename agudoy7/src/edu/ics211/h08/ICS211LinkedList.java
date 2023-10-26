@@ -1,6 +1,7 @@
 package edu.ics211.h08;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * ICS211LinkedListIterator<E>
@@ -11,20 +12,6 @@ import java.util.Iterator;
  */
 
 public class ICS211LinkedList<E> implements Iterable<E> {
-
-    public static void main(String[] args){
-        ICS211LinkedList<String> list = new ICS211LinkedList<String>();
-
-        list.add("abc");
-        list.add("def");
-        list.add("ghi");
-        list.add("jkl");
-        list.add("mno");
-
-        for(String str : list){
-            System.out.println(str);
-        }
-    }
     
     /* * * LINKED NODE DEFINITION * * */
     
@@ -70,41 +57,58 @@ public class ICS211LinkedList<E> implements Iterable<E> {
 
     /* * * LINKED LIST ITERATOR DEFINITION * * */
 
-    protected class LinkedListIterator<N> implements Iterator<N>{
+    protected class LinkedListIterator<E> implements Iterator<E>{
 
-        protected LinkedNode<N> previous;
+        protected LinkedNode<E> current;
+        protected LinkedNode<E> previous;
 
         public LinkedListIterator(){
+            current = (LinkedNode<E>) head;
             previous = null;
         }
 
         @Override
         public boolean hasNext(){
-            return previous.next != null;
+            return current != null;
         }
 
         @Override
-        public N next(){
-            LinkedNode<N> result = previous;
-            previous = previous.next;
-            return result.item;
+        public E next(){
+            if(hasNext()){
+                LinkedNode<E> result = current;
+                previous = current;
+                current = current.next;
+                return result.item;
+            }
+            throw new NoSuchElementException("no new element");
         }
 
         @Override
-        public void remove(){
-            //TODO
+        public void remove(){                       // TODO
+            if(previous == null){
+                throw new IllegalStateException();
+            }
+
+            if(current == head && tail == head){
+                head = null;
+                tail = null;
+            } else if(current == head){
+                //head = current.next;
+            }
+
+            previous.next = current.next;
         }
     }
 
     /* * * END OF LINKED LIST ITERATOR DEFINITION * * */
 
 
-    /* * * ICS211LinkedListIterator * * */
+    /* * * ICS211LinkedList * * */
 
     // If linked list is empty, both head and tail are null.
     protected LinkedNode<E> head;       // start of the linked list
     protected LinkedNode<E> tail;       // end of the linked list, next=null
-    protected int size;
+    public int size;
 
     public ICS211LinkedList(){
         head = null;
@@ -201,14 +205,97 @@ public class ICS211LinkedList<E> implements Iterable<E> {
         checkInvariants();
     }
 
-    //TODO
-    public E remove(int index){
-        return null;
+    /**
+     * removes head of the linked list
+     * @return the previous head of the list
+     */
+    private LinkedNode<E> removeFront(){            // TODO
+
+        if(head == null){
+            throw new NoSuchElementException("list is empty");
+        }
+
+        LinkedNode<E> node = head;
+
+        if(head == tail){
+            head = null;
+            tail = null;
+        } else{
+            head = node.next;
+        }
+
+        return node;
     }
 
-    //TODO
-    public LinkedListIterator<E> iterator(){
-        return null;
+    /**
+     * removes tail of the linked list
+     * @return the previous tail of the list
+     */
+    private LinkedNode<E> removeTail(){             // TODO
+
+        if(head == null){
+            throw new NoSuchElementException("list is empty");
+        }
+
+        LinkedNode<E> node = head;
+        LinkedNode<E> result = head;
+
+        if(head == tail){
+            head = null;
+            tail = null;
+        } else{
+            while(node.next.next != null){
+                node = node.next;
+            }
+            node.next = null;
+            tail = node;
+            result = node.next;
+        }
+
+        return result;
+    }
+
+    /**
+     * Removes the element at the specified position in this list
+     * @param index of the element to remove
+     * @return the element that was removed
+     */
+    public E remove(int index){                     // TODO
+        checkInvariants();
+        
+        LinkedNode<E> current = head;
+        LinkedNode<E> result;
+
+        if(index < 0 || index >= size){
+            throw new IndexOutOfBoundsException("index out of bounds");
+        }
+
+        if(index == 0){
+            result = removeFront();
+        } else if(index == size - 1){
+            result = removeTail();
+        } else {
+            while(index > 0){
+                current = current.next;
+
+                index = index - 1;
+            }
+            result = current.next;
+            current.next = current.next.next;
+        }
+        
+        size = size - 1;
+
+        checkInvariants();
+        return result.item;
+    }
+
+    /**
+     * returns an iterator object for the linked list
+     * @return a LinkedListIterator<E> object
+     */
+    public LinkedListIterator<E> iterator(){        // TODO
+        return new LinkedListIterator<E>();
     }
 
     /**
@@ -248,7 +335,6 @@ public class ICS211LinkedList<E> implements Iterable<E> {
         checkInvariants();
         return result.toString();
     }
-
 
 
     /**
@@ -294,5 +380,7 @@ public class ICS211LinkedList<E> implements Iterable<E> {
 		verify(visitedLast == tail);
     }
 
-
+    public static <E> void p(E print){
+        System.out.println("\n" + print);
+    }
 }
