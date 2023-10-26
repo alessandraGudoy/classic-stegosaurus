@@ -264,6 +264,7 @@ public class ICS211LinkedList<E> implements Iterable<E> {
         checkInvariants();
         
         LinkedNode<E> current = head;
+        LinkedNode<E> previous = null;
         LinkedNode<E> result;
 
         if(index < 0 || index >= size){
@@ -276,12 +277,13 @@ public class ICS211LinkedList<E> implements Iterable<E> {
             result = removeTail();
         } else {
             while(index > 0){
+                previous = current;
                 current = current.next;
 
                 index = index - 1;
             }
             result = current.next;
-            current.next = current.next.next;
+            previous.next = current.next;
         }
         
         size = size - 1;
