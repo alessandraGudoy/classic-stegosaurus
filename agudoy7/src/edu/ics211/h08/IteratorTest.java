@@ -34,14 +34,13 @@ public class IteratorTest {
 
 
         Iterator<String> iterator = linkedList.iterator();
-        
-        p(iterator.hasNext());
+        Iterator<String> iterator2 = linkedList.iterator();
+
         p(iterator.next());
-        iterator.remove();
-        p(iterator.hasNext());
         p(iterator.next());
 
-        p(linkedList.toString());
+        p(iterator2.next());
+        
 
     }
 
