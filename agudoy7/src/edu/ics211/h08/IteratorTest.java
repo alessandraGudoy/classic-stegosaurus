@@ -13,18 +13,26 @@ public class IteratorTest {
     public static <E> void linked(){
         ICS211LinkedList<String> linkedList = new ICS211LinkedList<String>();
 
+        
         linkedList.add("def");
         linkedList.add("jkl");
         linkedList.add(0,"abc");
         linkedList.add(2,"ghi");
         linkedList.add(4,"mno");
 
-        int index = 0;
-        for(String str : linkedList){
-            p(str);
-            linkedList.remove(index);
-            p(linkedList.toString());
-        }
+        // abc def ghi jkl mno
+        linkedList.remove(0);
+
+        // def ghi jkl mno
+        p(linkedList.toString());
+        linkedList.remove(3);
+
+        // def ghi jkl
+        p(linkedList.toString());
+
+        p(linkedList.head.item);
+        p(linkedList.tail.item);
+
 
         Iterator<String> iterator = linkedList.iterator();
         

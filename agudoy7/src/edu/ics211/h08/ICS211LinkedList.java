@@ -106,9 +106,9 @@ public class ICS211LinkedList<E> implements Iterable<E> {
     /* * * ICS211LinkedList * * */
 
     // If linked list is empty, both head and tail are null.
-    protected LinkedNode<E> head;       // start of the linked list
-    protected LinkedNode<E> tail;       // end of the linked list, next=null
-    public int size;
+    public LinkedNode<E> head;       // start of the linked list
+    public LinkedNode<E> tail;       // end of the linked list, next=null
+    protected int size;
 
     public ICS211LinkedList(){
         head = null;
@@ -247,9 +247,9 @@ public class ICS211LinkedList<E> implements Iterable<E> {
             while(node.next.next != null){
                 node = node.next;
             }
+            result = node.next;
             node.next = null;
             tail = node;
-            result = node.next;
         }
 
         return result;
