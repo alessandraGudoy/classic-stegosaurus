@@ -213,31 +213,37 @@ public class ICS211LinkedList<E> implements Iterable<E> {
     /**
      * removes head of the linked list
      * @return the previous head of the list
+     * @throws NoSuchElementException if list is empty
      */
-    private LinkedNode<E> removeFront(){            // TODO
+    private LinkedNode<E> removeFront(){
 
+        // if head is null, list is empty, throw error
         if(head == null){
             throw new NoSuchElementException("list is empty");
         }
 
         LinkedNode<E> node = head;
 
+        // if only one element, change head and tail
         if(head == tail){
             head = null;
             tail = null;
-        } else{
+        } else{ // chagne head to point to element after head
             head = node.next;
         }
 
+        // return node (which was set to the head)
         return node;
     }
 
     /**
      * removes tail of the linked list
      * @return the previous tail of the list
+     * @throws NoSuchElementException if list is empty
      */
-    private LinkedNode<E> removeTail(){             // TODO
+    private LinkedNode<E> removeTail(){
 
+        // if head is null, list is empty, throw error
         if(head == null){
             throw new NoSuchElementException("list is empty");
         }
@@ -245,16 +251,19 @@ public class ICS211LinkedList<E> implements Iterable<E> {
         LinkedNode<E> node = head;
         LinkedNode<E> result = head;
 
+        // if only one element in list, set head and tail to null
         if(head == tail){
             head = null;
             tail = null;
         } else{
+            // traverse to node before tail
             while(node.next.next != null){
                 node = node.next;
             }
-            result = node.next;
-            node.next = null;
-            tail = node;
+            
+            result = node.next;     // set result to be the tail (node = node before tail)
+            node.next = null;       // set next of node to be null to get rid of tail
+            tail = node;            // set the tail to be current node (node before the tail)
         }
 
         return result;
@@ -264,14 +273,16 @@ public class ICS211LinkedList<E> implements Iterable<E> {
      * Removes the element at the specified position in this list
      * @param index of the element to remove
      * @return the element that was removed
+     * @throws IndexOutOfBoundsException if index is not within 0...size-1
      */
-    public E remove(int index){                     // TODO
+    public E remove(int index){
         checkInvariants();
         
         LinkedNode<E> current = head;
         LinkedNode<E> previous = null;
         LinkedNode<E> result;
 
+        // check if index is valid
         if(index < 0 || index >= size){
             throw new IndexOutOfBoundsException("index out of bounds");
         }
@@ -281,6 +292,7 @@ public class ICS211LinkedList<E> implements Iterable<E> {
         } else if(index == size - 1){
             result = removeTail();
         } else {
+            // taverse to node to remove
             while(index > 0){
                 previous = current;
                 current = current.next;
@@ -301,7 +313,7 @@ public class ICS211LinkedList<E> implements Iterable<E> {
      * returns an iterator object for the linked list
      * @return a LinkedListIterator<E> object
      */
-    public LinkedListIterator iterator(){        // TODO
+    public LinkedListIterator iterator(){
         return new LinkedListIterator();
     }
 
