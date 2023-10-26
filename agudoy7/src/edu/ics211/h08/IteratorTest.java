@@ -20,6 +20,7 @@ public class IteratorTest {
         linkedList.add(2,"ghi");
         linkedList.add(4,"mno");
 
+        /*
         // abc def ghi jkl mno
         linkedList.remove(0);
 
@@ -29,22 +30,18 @@ public class IteratorTest {
 
         // def ghi jkl
         p(linkedList.toString());
-
-        p(linkedList.head.item);
-        p(linkedList.tail.item);
+        */
 
 
         Iterator<String> iterator = linkedList.iterator();
         
-        // for(int i=0; i <= linkedList.size; i++){
-        //     try{
-        //         p(iterator.hasNext());
-        //         p(iterator.next());
-        //     } catch(Exception e){
-        //         p(e);
-        //         p("Is it working?");
-        //     }
-        // }
+        p(iterator.hasNext());
+        p(iterator.next());
+        iterator.remove();
+        p(iterator.hasNext());
+        p(iterator.next());
+
+        p(linkedList.toString());
 
     }
 

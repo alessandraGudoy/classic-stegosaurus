@@ -57,13 +57,13 @@ public class ICS211LinkedList<E> implements Iterable<E> {
 
     /* * * LINKED LIST ITERATOR DEFINITION * * */
 
-    protected class LinkedListIterator<E> implements Iterator<E>{
+    public class LinkedListIterator implements Iterator<E>{
 
         protected LinkedNode<E> current;
         protected LinkedNode<E> previous;
 
         public LinkedListIterator(){
-            current = (LinkedNode<E>) head;
+            current = head;
             previous = null;
         }
 
@@ -89,14 +89,19 @@ public class ICS211LinkedList<E> implements Iterable<E> {
                 throw new IllegalStateException();
             }
 
-            if(current == head && tail == head){
-                head = null;
-                tail = null;
-            } else if(current == head){
-                //head = current.next;
+            if(previous == head){
+                if(head == tail){
+                    head = null;
+                    tail = null;
+                } else{
+                    head = current;
+                }
+            } else{
+                previous.next = current.next;
             }
 
-            previous.next = current.next;
+            size = size - 1;
+            
         }
     }
 
@@ -296,8 +301,8 @@ public class ICS211LinkedList<E> implements Iterable<E> {
      * returns an iterator object for the linked list
      * @return a LinkedListIterator<E> object
      */
-    public LinkedListIterator<E> iterator(){        // TODO
-        return new LinkedListIterator<E>();
+    public LinkedListIterator iterator(){        // TODO
+        return new LinkedListIterator();
     }
 
     /**
