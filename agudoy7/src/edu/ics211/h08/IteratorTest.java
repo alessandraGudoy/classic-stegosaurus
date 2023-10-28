@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class IteratorTest {
+    private static final String[] list = {"ah", "ba", "ka", "da", "eh", "ga"};
+
     public static void main(String[] args){
         //arrList();
         linked();
@@ -13,33 +15,37 @@ public class IteratorTest {
     public static <E> void linked(){
         ICS211LinkedList<String> linkedList = new ICS211LinkedList<String>();
 
+        for(String str : list){
+            linkedList.add(str);
+        }
+
+        // adding at front
+        linkedList.add(0,"NEW HEAD");
+        // adding at end
+        linkedList.add(7,"NEW TAIL");
+
         
-        linkedList.add("def");
-        linkedList.add("jkl");
-        linkedList.add(0,"abc");
-        linkedList.add(2,"ghi");
-        linkedList.add(4,"mno");
+        p(linkedList.remove(7));
+        p(linkedList.remove(6));
+        p(linkedList.remove(4));
+        p(linkedList.remove(2));
+        p(linkedList.remove(0));
 
-        /*
-        // abc def ghi jkl mno
-        linkedList.remove(0);
+        p(linkedList.getHead());
+        p(linkedList.getTail());
 
-        // def ghi jkl mno
         p(linkedList.toString());
-        linkedList.remove(3);
 
-        // def ghi jkl
+        Iterator<String> it = linkedList.iterator();
+        Iterator<String> it2 = linkedList.iterator();
+        p(it.hasNext());
+        p(it.next());
+        p(it.next());
+
+        p(it2.next());
+        it.remove();
+
         p(linkedList.toString());
-        */
-
-
-        Iterator<String> iterator = linkedList.iterator();
-        Iterator<String> iterator2 = linkedList.iterator();
-
-        p(iterator.next());
-        p(iterator.next());
-
-        p(iterator2.next());
         
 
     }
@@ -47,28 +53,12 @@ public class IteratorTest {
     public static void arrList(){
         ArrayList<String> arrList = new ArrayList<String>();
         
-        arrList.add("awit");
-        arrList.add("bahay");
-        arrList.add("kamay");
-        arrList.add("dalampasigan");
-        p(arrList);
-
-        ICS211ArrayListIterator<String> iterator = new ICS211ArrayListIterator<String>(arrList);
-        ICS211ArrayListIterator<String> iterator2 = new ICS211ArrayListIterator<String>(arrList);
-        
-        for(int i=0; i <= arrList.size(); i++){
-            try{
-                p(iterator.hasNext());
-                p(iterator.next());
-            } catch(Exception e){
-                p(e);
-                p("Is it working?");
-            }
+        for(String str : list){
+            arrList.add(str);
         }
 
-        p(iterator2.next());
-        p(iterator2.hasNext());
-        p(arrList);
+        p(arrList.toString());
+
     }
 
     public static <E> void p(E print){

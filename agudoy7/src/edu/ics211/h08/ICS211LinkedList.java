@@ -100,6 +100,10 @@ public class ICS211LinkedList<E> implements Iterable<E> {
                 }
             } else{
                 previous.next = current.next;
+                
+                if(previous == tail){
+                    //tail = 
+                }
             }
 
             size = size - 1;        // must decrement size for invariances to hold up
@@ -301,7 +305,7 @@ public class ICS211LinkedList<E> implements Iterable<E> {
 
                 index = index - 1;
             }
-            result = current.next;
+            result = current;
             previous.next = current.next;
         }
         
@@ -401,7 +405,12 @@ public class ICS211LinkedList<E> implements Iterable<E> {
 		verify(visitedLast == tail);
     }
 
-    public static <E> void p(E print){
-        System.out.println("\n" + print);
+    public E getHead(){
+        return head != null ? head.item : null;
     }
+
+    public E getTail(){
+        return tail != null ? tail.item : null;
+    }
+
 }
