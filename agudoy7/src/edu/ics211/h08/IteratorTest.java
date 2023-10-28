@@ -31,22 +31,32 @@ public class IteratorTest {
         p(linkedList.remove(2));
         p(linkedList.remove(0));
 
-        p(linkedList.getHead());
-        p(linkedList.getTail());
+        
 
         p(linkedList.toString());
 
+        p("");
+        p("* * * ITERATOR TESTING * * *");
+        p("");
         Iterator<String> it = linkedList.iterator();
         Iterator<String> it2 = linkedList.iterator();
-        p(it.hasNext());
-        p(it.next());
-        p(it.next());
 
-        p(it2.next());
+        p(it.hasNext());        // true
+        p(it.next());           // ah
+        p(it.next());           // ka
+        it.remove();
+        p(it.next());           // eh
         it.remove();
 
-        p(linkedList.toString());
-        
+        System.out.print("HEAD: ");
+        p(linkedList.getHead());
+        System.out.print("TAIL: ");
+        p(linkedList.getTail());
+
+        p(linkedList.toString());   // ah -> eh
+
+        p(it2.next());
+
 
     }
 

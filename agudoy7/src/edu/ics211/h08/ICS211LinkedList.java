@@ -61,10 +61,13 @@ public class ICS211LinkedList<E> implements Iterable<E> {
 
         protected LinkedNode<E> current;
         protected LinkedNode<E> previous;
+        protected LinkedNode<E> beforePrevious;
+        //protected LinkedNode<E> secondToLast;
 
         public LinkedListIterator(){
             current = head;
             previous = null;
+            beforePrevious = null;
         }
 
         @Override
@@ -76,6 +79,8 @@ public class ICS211LinkedList<E> implements Iterable<E> {
         public E next(){
             if(hasNext()){
                 LinkedNode<E> result = current;
+
+                beforePrevious = previous;      // ***************
                 previous = current;
                 current = current.next;
                 return result.item;
@@ -99,14 +104,22 @@ public class ICS211LinkedList<E> implements Iterable<E> {
                     head = current; // set current node to head
                 }
             } else{
-                previous.next = current.next;
-                
-                if(previous == tail){
-                    //tail = 
+
+                if(previous == head.next){
+                    head.next = current;
+                } /*else if(previous == tail){
+                    tail = beforePrevious;
+                }*/else{
+                    beforePrevious = current;
                 }
+
             }
 
             size = size - 1;        // must decrement size for invariances to hold up
+
+            if(size == 1){
+                tail = head;
+            }
             
         }
     }
