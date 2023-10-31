@@ -1,28 +1,30 @@
 package edu.ics211.h09;
 
-/**
- * StackCalculator
- * 
- * @author Alessandra Gudoy
- */
 public class StackCalculator {
-
-    public static void main(String[] args){
-        System.out.println(calculate(args));
-    }
     
-    public static String calculate(String[] args){
-        StringBuilder builder = new StringBuilder();
+    public static void main(String[] args){
 
-        for(int i=0; i<5; i++){
-            builder.append(i);
-            builder.append("\n");
+    }
+
+    private LinkedNode head;
+
+    public static class LinkedNode{
+        private long item;
+        private LinkedNode next;
+
+        public LinkedNode(){
+            item = 0;
+            next = null;
         }
 
-        return builder.toString();
-    }
+        public LinkedNode(long value){
+            item = value;
+            next = null;
+        }
 
-    public static class MyStack<E>{
-
+        public LinkedNode(long value, LinkedNode reference){
+            item = value;
+            next = reference;
+        }
     }
 }
