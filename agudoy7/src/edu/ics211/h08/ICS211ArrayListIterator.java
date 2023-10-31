@@ -10,6 +10,7 @@ import java.util.Iterator;
  * @author Alessandra Gudoy
  */
 
+@SuppressWarnings("unchecked")
 public class ICS211ArrayListIterator<E> implements Iterator<E>{
 
     public E[] data;

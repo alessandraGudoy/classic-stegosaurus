@@ -11,6 +11,7 @@ import java.util.NoSuchElementException;
  * 
  */
 
+@SuppressWarnings("unchecked")
 public class ICS211LinkedList<E> implements Iterable<E> {
     
     /* * * LINKED NODE DEFINITION * * */
@@ -332,8 +333,8 @@ public class ICS211LinkedList<E> implements Iterable<E> {
      * returns an iterator object for the linked list
      * @return a LinkedListIterator<E> object
      */
-    public LinkedListIterator iterator(){
-        return new LinkedListIterator();
+    public LinkedListIterator<E> iterator(){
+        return new LinkedListIterator<E>();
     }
 
     /**
