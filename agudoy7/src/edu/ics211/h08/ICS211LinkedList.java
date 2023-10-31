@@ -57,11 +57,11 @@ public class ICS211LinkedList<E> implements Iterable<E> {
 
     /* * * LINKED LIST ITERATOR DEFINITION * * */
 
-    public class LinkedListIterator implements Iterator<E>{
+    public class LinkedListIterator<N> implements Iterator<N>{
 
         protected LinkedNode<E> current;
-        protected LinkedNode<E> previous;
-        protected LinkedNode<E> beforePrevious;
+        protected LinkedNode<N> previous;
+        protected LinkedNode<N> beforePrevious;
         //protected LinkedNode<E> secondToLast;
 
         public LinkedListIterator(){
@@ -76,14 +76,14 @@ public class ICS211LinkedList<E> implements Iterable<E> {
         }
 
         @Override
-        public E next(){
+        public N next(){
             if(hasNext()){
                 LinkedNode<E> result = current;
 
                 beforePrevious = previous;      // ***************
-                previous = current;
+                previous = (LinkedNode<N>) current;
                 current = current.next;
-                return result.item;
+                return (N) result.item;
             }
             throw new NoSuchElementException("no new element");
         }
@@ -110,7 +110,7 @@ public class ICS211LinkedList<E> implements Iterable<E> {
                 } /*else if(previous == tail){
                     tail = beforePrevious;
                 }*/else{
-                    beforePrevious = current;
+                    beforePrevious = (LinkedNode<N>) current;
                 }
 
             }

@@ -7,8 +7,8 @@ public class IteratorTest {
     private static final String[] list = {"ah", "ba", "ka", "da", "eh", "ga"};
 
     public static void main(String[] args){
-        arrList();
-        //linked();
+        // arrList();
+        linked();
 
     }
 
@@ -41,31 +41,31 @@ public class IteratorTest {
         Iterator<String> it = linkedList.iterator();
         Iterator<String> it2 = linkedList.iterator();
 
-        p(it2.next());
-        p(it2.next());
-
-        while(it2.hasNext()){
-            p(it2.next());
-            it.next();
-            it.remove();
-            p(linkedList.toString());
-        }
-
-        // p(it.hasNext());        // true
-        // p(it.next());           // ah
-        // p(it.next());           // ka
-        // it.remove();
-        // p(it.next());           // eh
-        // it.remove();
-
-        // System.out.print("HEAD: ");
-        // p(linkedList.getHead());
-        // System.out.print("TAIL: ");
-        // p(linkedList.getTail());
-
-        // p(linkedList.toString());   // ah -> eh
-
         // p(it2.next());
+        // p(it2.next());
+
+        // while(it2.hasNext()){
+        //     p(it2.next());
+        //     it.next();
+        //     it.remove();
+        //     p(linkedList.toString());
+        // }
+
+        p(it.hasNext());        // true
+        p(it.next());           // NEW HEAD
+        p(it.next());           // ah
+        it.remove();            // NEW HEAD, ba, ka, da, eh, ga, NEW TAIL
+        p(it.next());           // ba
+        it.remove();            // NEW HEAD, ka, da, eh, ga, NEW TAIL
+
+        System.out.print("HEAD: ");
+        p(linkedList.getHead());        // NEW HEAD
+        System.out.print("TAIL: ");
+        p(linkedList.getTail());        // NEW TAIL
+
+        p(linkedList.toString());
+
+        p(it2.next());          // NEW HEAD
     }
 
     public static void arrList(){

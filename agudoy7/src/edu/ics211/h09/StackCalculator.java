@@ -22,5 +22,7 @@ public class StackCalculator {
         return builder.toString();
     }
 
-    
+    public static class MyStack<E>{
+
+    }
 }
