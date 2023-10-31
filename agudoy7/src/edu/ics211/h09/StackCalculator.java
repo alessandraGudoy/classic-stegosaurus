@@ -59,7 +59,7 @@ public class StackCalculator {
     /**
      * Calculates the result of the first two operands using the given operator
      *      => result of the calculation pushed to the stack
-     * @param operand
+     * @param operator to use in calculation
      */
 	public static void calculate(char operator) {
 		if(!isValidOperand(operator)) { throw new RuntimeException("Invalid Operand"); }
@@ -106,12 +106,12 @@ public class StackCalculator {
 	
 	/**
 	 * Checks to ensure the operand is valid
-	 * @param operand
-	 * @return
+	 * @param operator to check
+	 * @return true if given operator is valid
 	 */
-	private static boolean isValidOperand(char operand) {
+	private static boolean isValidOperand(char operator) {
 		for(char ch: USABLE_OPERATOR) {
-			if(ch == operand) { return true; }
+			if(ch == operator) { return true; }
 		}
 		return false;
 	}
