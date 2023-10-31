@@ -1,5 +1,7 @@
 package edu.ics211.h09;
 
+import java.util.EmptyStackException;
+
 /**
  * StackCalculator
  * 
@@ -7,40 +9,99 @@ package edu.ics211.h09;
  * @author Alessandra Gudoy
  */
 public class StackCalculator {
-    private static final char[] USABLE_OPERANDS = { '+', '-', '*', '/', '÷', '^', '%' };
+    private static final char[] USABLE_OPERATOR = { '+', '-', '*', '/', '÷', '^', '%' };
 
-    private LinkedNode head;
+    private static LinkedNode operands;    // list of operands to operate on; head of list
+    //private LinkedNode operators;
+    private static int numOfOperands = 0;
     
     public static void main(String[] args){
+        push(25);
+        calculate('+');
+        System.out.println(pop());
 
     }
 
-    public long pop() {
-		//TODO stub - to implement
-		//remove and return top value of stack
-		//if the stack is empty, throw java.util.EmptyStackException
-		return 0;
+    /**
+     * Removes and returns top value of the stack
+     * @return top value of the stack
+     */
+    public static long pop() {
+        if(numOfOperands == 0 || operands == null){
+            throw new EmptyStackException();
+        }
+
+        LinkedNode result = operands;
+        operands = operands.next;
+        numOfOperands = numOfOperands - 1;
+
+		return result.item;
 	}
 	
-	public long peek() {
-		//TODO stub - to implement
-		//return top value of stack (don't remove!)
-		return 0;
+    /**
+     * Returns top value of the stack without removing
+     * @return top value of the stack
+     */
+	public static long peek() {
+		return operands.item;
 	}
 	
-	public void push(long value) {
-		//TODO stub - to implement
-		//push a value onto the stack
+    /**
+     * Adds a value onto the stack
+     * @param value to add to the stack
+     */
+	public static void push(long newValue) {
+		LinkedNode value = new LinkedNode(newValue, operands);
+        operands = value;
+        numOfOperands = numOfOperands + 1;
 	}
 	
-	public void calculate(char operand) {
-		if(!isValidOperand(operand)) { throw new RuntimeException("Invalid Operand"); }
-		if(operand == '÷') { operand = '/'; }
-		
-		//TODO stub - to implement
-		//takes an operand as input, and applies it to the top 2 values on the stack
-		//		(if there are less than 2 values on the stack, throw java.util.EmptyStackException)
-		//the resulting value is then pushed to the stack.
+    /**
+     * Calculates the result of the first two operands using the given operator
+     *      => result of the calculation pushed to the stack
+     * @param operand
+     */
+	public static void calculate(char operator) {
+		if(!isValidOperand(operator)) { throw new RuntimeException("Invalid Operand"); }
+		if(operator == '÷') { operator = '/'; }
+
+        long num2 = pop();
+        long num1 = pop();
+        long result = 0;
+        boolean calculated = false;
+
+        switch(operator){
+            case '+':
+                result = num1 + num2;
+                calculated = true;
+                break;
+            case '-':
+                result = num1 - num2;
+                calculated = true;
+                break;
+            case '*':
+                result = num1 * num2;
+                calculated = true;
+                break;
+            case '/':
+                result = num1 / num2;
+                calculated = true;
+                break;
+            case '^':
+                result = (long) Math.pow(num1, num2);
+                calculated = true;
+                break;
+            case '%':
+                result = num1 % num2;
+                calculated = true;
+                break;
+        }
+
+        if(calculated){
+            push(result);
+        } else{
+            throw new RuntimeException("Something went wrong");
+        }
 	}
 	
 	/**
@@ -48,8 +109,8 @@ public class StackCalculator {
 	 * @param operand
 	 * @return
 	 */
-	private boolean isValidOperand(char operand) {
-		for(char ch: USABLE_OPERANDS) {
+	private static boolean isValidOperand(char operand) {
+		for(char ch: USABLE_OPERATOR) {
 			if(ch == operand) { return true; }
 		}
 		return false;
@@ -57,9 +118,9 @@ public class StackCalculator {
 
     /* * * LINKED NODE DEFINITION * * */
 
-    public static class LinkedNode{
-        private long item;
-        private LinkedNode next;
+    protected static class LinkedNode{
+        protected long item;
+        protected LinkedNode next;
 
         // default constructor
         public LinkedNode(){
