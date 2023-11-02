@@ -1,5 +1,6 @@
 package edu.ics211.h09;
 
+import java.util.Arrays;
 import java.util.EmptyStackException;
 
 /**
@@ -19,9 +20,17 @@ public class MyStackCalculator {
 
         for(String expression : args){
             String[] tokens = expression.split(" ");
-            System.out.println(tokens.toString());
+
             MyStack operands = new MyStack();
             MyStack operators = new MyStack();
+
+            for(String str : tokens){
+                if(true){
+
+                }
+            }
+
+            
         }
 
         return builder.toString();
@@ -33,7 +42,7 @@ public class MyStackCalculator {
 
         protected LinkedNode head;
         protected int size;
-        protected boolean isEmpty; 
+        protected boolean isEmpty;
 
         public MyStack(){
             isEmpty = true;
