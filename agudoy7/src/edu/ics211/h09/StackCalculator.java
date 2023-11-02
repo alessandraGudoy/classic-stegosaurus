@@ -16,10 +16,20 @@ public class StackCalculator {
     private static int numOfOperands = 0;
     
     public static void main(String[] args){
-        push(25);
-        calculate('+');
-        System.out.println(pop());
+        push(-2);
+        System.out.println("PUSHING -2: " + peek());
+        push(5);
+        System.out.println("PUSHING 5: " + peek());
+        push(3);
+        System.out.println("PUSHING 3: " + peek());
 
+        System.out.println();
+        calculate('-');
+        System.out.print("5 - 3 = " + peek());
+
+        System.out.println();
+        calculate('-');
+        System.out.print("-2 - 2 = " + peek());
     }
 
     /**
@@ -27,7 +37,7 @@ public class StackCalculator {
      * @return top value of the stack
      */
     public static long pop() {
-        if(numOfOperands == 0 || operands == null){
+        if(numOfOperands == 0){
             throw new EmptyStackException();
         }
 
@@ -70,38 +80,44 @@ public class StackCalculator {
         long result = 0;
         boolean calculated = false;
 
+        // System.out.println("NUM1 = " + num1 + "\t|\tNUM2 = " + num2);
+        // System.out.print("CALUCLATING: ");
+
         switch(operator){
             case '+':
                 result = num1 + num2;
                 calculated = true;
+                // System.out.println("SUM: " + (result));
                 break;
             case '-':
                 result = num1 - num2;
                 calculated = true;
+                // System.out.println("DIFFERENCE: " + (result));
                 break;
             case '*':
                 result = num1 * num2;
                 calculated = true;
+                // System.out.println("PRODUCT: " + (result));
                 break;
             case '/':
                 result = num1 / num2;
                 calculated = true;
+                // System.out.println("QUOTIENT: " + (result));
                 break;
             case '^':
                 result = (long) Math.pow(num1, num2);
                 calculated = true;
+                // System.out.println("POWER: " + (result));
                 break;
             case '%':
                 result = num1 % num2;
                 calculated = true;
+                // System.out.println("REMAINDER: " + (result));
                 break;
         }
 
-        if(calculated){
-            push(result);
-        } else{
-            throw new RuntimeException("Something went wrong");
-        }
+        if(calculated) { push(result); }
+        else{ throw new RuntimeException("Something went wrong"); }
 	}
 	
 	/**
