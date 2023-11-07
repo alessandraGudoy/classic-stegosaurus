@@ -16,23 +16,32 @@ public class StackCalculator {
     private static int numOfOperands = 0;
     
     public static void main(String[] args){
-        push(-2);
-        System.out.println("PUSHING -2: " + peek());
-        push(5);
-        System.out.println("PUSHING 5: " + peek());
-        push(3);
-        System.out.println("PUSHING 3: " + peek());
-
-        System.out.println();
-        calculate('-');
-        System.out.print("5 - 3 = " + peek());
-
-        System.out.println();
-        calculate('-');
-        System.out.print("-2 - 2 = " + peek());
+        System.out.println(test4());
+        System.out.println(test5());
     }
 
-    /**
+    public static boolean test4(){
+        StackCalculator calc = new StackCalculator();
+        try{
+            calc.calculate('*');
+            return false;
+        } catch(Exception e){
+            return true;
+        }
+    }
+
+    public static boolean test5(){
+        StackCalculator calc = new StackCalculator();
+        calc.push(4);
+        try{
+            calc.calculate('*');
+            return false;
+        } catch(Exception e){
+            return true;
+        }
+    }
+
+     /**
      * Removes and returns top value of the stack
      * @return top value of the stack
      */
