@@ -24,55 +24,101 @@ package edu.ics211.h10;
 public class Scheduler {
 	
 	public final Task[] array;
-	//insert any other class variables here...
+	public final int maxTasks;
+	private int start;
+	private int end;
+	private int size;
 	
 	public Scheduler(int queueSize) {
 		array = new Task[queueSize];
-	}
-	
-	public void add(Task task) {
-		// TODO add the task to the queue
-		// Throw a NullPointerException if the task is null
-		// Throw a RuntimeException if the queue is full.
-	}
-	
-	public Task element() {
-		// TODO returns (but does not remove) the element at the
-		// head of the queue (next task to be called)
-		// Does NOT run the task it returns
-		// throws a RuntimeException if the queue is empty.
-		return null;
-	}
-	
-	public Task remove() {
-		// TODO returns and removes the element at the head of
-		// the queue (next task to be called)
-		// Does NOT run the task it returns
-		// throws a RuntimeException if the queue is empty.
-		return null;
+		maxTasks = queueSize;
+
+		start = 0;
+		end = 0;
+		size = 0;
 	}
 	
 	/**
-	 * 
-	 * @param  none
-	 * @return the result returned by the task
+	 * Adds a task to the queue
+	 * @param task to be added to queue
+	 * @throws NullPointerException if task is null
+	 * @throws RuntimeException if queue is full
 	 */
-	public Object runTask() {
-		// TODO Runs the task at the head of the queue
-		// Removes the task from the queue, runs the job,
-		// and returns the result.
-		// Throw a RuntimeException if there are no jobs in the queue
-		return null;
+	public void add(Task task) {
+		if(task == null){
+			throw new NullPointerException("Task is null");
+		} else if(size == maxTasks){
+			throw new RuntimeException("Queue is full");
+		} else{
+			array[end] = task;
+			end = (end + 1) % maxTasks;
+			size = size + 1;
+		}
 	}
 	
+	/**
+	 * Returns but does not remove the element at the head of the queue (next task to be called)
+	 * 		Does NOT run the task it returns
+	 * @return task at the head of queue (next task to be called)
+	 * @throws RuntimeException if queue is empty
+	 */
+	public Task element() {		// TODO
+
+		if(size == 0){
+			throw new RuntimeException("Queue is empty -- no tasks to return");
+		}
+		return array[(start) % maxTasks];
+	}
+	
+	/**
+	 * Returns and removes the element at the head of the queue (next task to be called)
+	 * 		Does NOT run the task it returns
+	 * @return task at the head of the queue
+	 * @throws RuntimeException if queue is empty
+	 */
+	public Task remove() {		// TODO
+
+		if(size == 0){
+			throw new RuntimeException("Queue is empty -- no tasks to remove");
+		}
+		
+		size = size - 1;
+		start = (start + 1) % maxTasks;
+
+		return array[(start-1+maxTasks) % maxTasks];
+	}
+	
+	/**
+	 * Runs and removes the task at the head of the queue and returns the result of the task
+	 * @return the result returned by the task
+	 * @throws RuntimeException if queue "is empty" (no jobs to do in the queue)
+	 */
+	public Object runTask() {	// TODO
+
+		if(size == 0){
+			throw new RuntimeException("Queue is empty -- no tasks to be done");
+		}
+
+		size = size - 1;
+		start = (start + 1) % maxTasks;
+
+		return array[(start-1+maxTasks) % maxTasks].run();
+	}
+	
+	/**
+	 * Returns the number of jobs currently in the queue
+	 * @return number of jobs in queue
+	 */
 	public int size() {
-		// TODO returns the number of jobs currently in the queue
-		return 0;
+		return this.size;
 	}
 	
+	/**
+	 * Returns if queue is empty
+	 * @return true if queue is empty, false if there are jobs to do in the queue
+	 */
 	public boolean empty() {
-		// TODO returns true if the queue is empty, else returns false
-		return false;
+		return size == 0;
 	}
 	
 	private static void assertTrue(boolean b) {
@@ -186,6 +232,6 @@ public class Scheduler {
 		public String toString() { return "Task: "+name; }
 	}
 
-	/* * * START OF TASK DEFINITION * * */
+	/* * * END OF TASK DEFINITION * * */
 	
 }
