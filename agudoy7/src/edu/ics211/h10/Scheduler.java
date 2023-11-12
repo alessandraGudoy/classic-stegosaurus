@@ -1,5 +1,7 @@
 package edu.ics211.h10;
 
+import java.util.Arrays;
+
 /**
  * This assignment is for you to learn about queues by implementing a
  * simple task scheduler, similar to what is found in an operating system.
@@ -128,83 +130,84 @@ public class Scheduler {
 	}
 	
 	public static void main(String[] args) {
-		Scheduler scheduler = new Scheduler(16);
+		test();
+		// Scheduler scheduler = new Scheduler(16);
 		
-		assertTrue(scheduler.size() == 0);
+		// assertTrue(scheduler.size() == 0);
 		
-		/* Adding brackets after "new Task("Task 1")" allows
-		 * one to redefine methods of the object without making
-		 * a new class.	To learn more about this, see:
-		 * (1) https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html
-		 * (2) https://www.baeldung.com/java-anonymous-classes
-		 */
-		scheduler.add(new Task("Task #0") {
-			@Override public Object run() {
-				return "(Dummy) Task #0 Completed";
-			}
-		});
+		// /* Adding brackets after "new Task("Task 1")" allows
+		//  * one to redefine methods of the object without making
+		//  * a new class.	To learn more about this, see:
+		//  * (1) https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html
+		//  * (2) https://www.baeldung.com/java-anonymous-classes
+		//  */
+		// scheduler.add(new Task("Task #0") {
+		// 	@Override public Object run() {
+		// 		return "(Dummy) Task #0 Completed";
+		// 	}
+		// });
 		
-		assertTrue(scheduler.size() == 1);
+		// assertTrue(scheduler.size() == 1);
 		
-		System.out.println(scheduler.runTask());
+		// System.out.println(scheduler.runTask());
 		
-		assertTrue(scheduler.size() == 0);
+		// assertTrue(scheduler.size() == 0);
 		
-		Long a = (long) 5, b = (long) 7, c = (long) 12;
+		// Long a = (long) 5, b = (long) 7, c = (long) 12;
 		
-		/* 
-		 * More ideas for tasks
-		 */
-		scheduler.add(new Task("Add Task", a, b) {
-			/*
-			 * running this task takes 2 Strings as parameters,
-			 * both representing a long
-			 */
-			@Override public Object run() {
-				Long l1 = Long.parseLong(params[0].toString());
-				Long l2 = Long.parseLong(params[1].toString());
-				return l1+l2;
-			}
-		});
+		// /* 
+		//  * More ideas for tasks
+		//  */
+		// scheduler.add(new Task("Add Task", a, b) {
+		// 	/*
+		// 	 * running this task takes 2 Strings as parameters,
+		// 	 * both representing a long
+		// 	 */
+		// 	@Override public Object run() {
+		// 		Long l1 = Long.parseLong(params[0].toString());
+		// 		Long l2 = Long.parseLong(params[1].toString());
+		// 		return l1+l2;
+		// 	}
+		// });
 		
-		scheduler.add(new Task("Hello Task", "Manoa") {
-			@Override public Object run() {
-				String your_name = (String) params[0];
-				return "Hello, " + your_name + "!";
-			}
-		});
+		// scheduler.add(new Task("Hello Task", "Manoa") {
+		// 	@Override public Object run() {
+		// 		String your_name = (String) params[0];
+		// 		return "Hello, " + your_name + "!";
+		// 	}
+		// });
 		
-		scheduler.add(new Task("Generate Queue Task", 3) {
-			@Override public Object run() {
-				Integer i1 = Integer.parseInt(params[0].toString());
-				return new Scheduler(i1);
-			}
-		});
+		// scheduler.add(new Task("Generate Queue Task", 3) {
+		// 	@Override public Object run() {
+		// 		Integer i1 = Integer.parseInt(params[0].toString());
+		// 		return new Scheduler(i1);
+		// 	}
+		// });
 		
-		//Running the tasks
-		assertTrue(scheduler.runTask() == c);
-		assertTrue(scheduler.size() == 2);
-		assertTrue(scheduler.runTask().equals("Hello, Manoa!"));
-		assertTrue(scheduler.size() == 1);
+		// //Running the tasks
+		// assertTrue(scheduler.runTask() == c);
+		// assertTrue(scheduler.size() == 2);
+		// assertTrue(scheduler.runTask().equals("Hello, Manoa!"));
+		// assertTrue(scheduler.size() == 1);
 		
-		Scheduler sch2 = (Scheduler) scheduler.runTask();
-		// since "dummy" doesn't override "run()",
-		// dummy.runTask() will always return null
-		Task dummy = new Task("Dummy");
-		assertTrue(dummy.run() == null);
+		// Scheduler sch2 = (Scheduler) scheduler.runTask();
+		// // since "dummy" doesn't override "run()",
+		// // dummy.runTask() will always return null
+		// Task dummy = new Task("Dummy");
+		// assertTrue(dummy.run() == null);
 
-		// add the same task several times
-		sch2.add(dummy);
-		sch2.add(dummy);
-		sch2.add(dummy);
+		// // add the same task several times
+		// sch2.add(dummy);
+		// sch2.add(dummy);
+		// sch2.add(dummy);
 		
-		try {	// the queue should have size 3, so this should fail
-			sch2.add(dummy);
-			System.out.println("Exception not thrown when queue capacity exceeded!");
-		} catch (RuntimeException re) {
-			System.out.println("Exception thrown properly.");
-		}
-		System.out.println("END OF MAIN");
+		// try {	// the queue should have size 3, so this should fail
+		// 	sch2.add(dummy);
+		// 	System.out.println("Exception not thrown when queue capacity exceeded!");
+		// } catch (RuntimeException re) {
+		// 	System.out.println("Exception thrown properly.");
+		// }
+		// System.out.println("END OF MAIN");
 	}
 
 	/* * * START OF TASK DEFINITION * * */
@@ -234,5 +237,119 @@ public class Scheduler {
 	}
 
 	/* * * END OF TASK DEFINITION * * */
+
+	public static void test(){
+		Scheduler sched = new Scheduler(4);
+
+		p("NO ELEMENTS: ", false);
+		try{
+			sched.element();
+		} catch(Exception e){
+			p("element() throws exception when no tasks", false);
+		}
+
+		try{
+			sched.remove();
+		} catch(Exception e){
+			p("remove() throws exception when no tasks", false);
+		}
+
+		try{
+			sched.runTask();
+		} catch(Exception e){
+			p("runTask() throws exception when no tasks", true);
+		}
+
+
+		p("ADDING 4 TASKS: ", true);
+
+		for(int i=0; i<4; i++){
+			yo(sched, new String("" + i), i);
+			assertTrue(sched.size() == (i+1));
+		}
+		assertTrue(sched.element().toString().equals("Task: 0"));
+
+
+		p("Adding fifth task:", false);
+		try{
+			yo(sched, "4", 4);
+		} catch(Exception e){
+			p("add() throws exception when queue full", false);
+			p("Running first task: " + sched.runTask(), true);
+			assertTrue(sched.size() == 3);
+			yo(sched, "4", 4);
+			assertTrue(sched.size() == 4);
+			p(Arrays.deepToString(sched.array), true);
+		}
+
+		p("Running all tasks in queue: ", false);
+		for(int i=4; i>0; i--){
+			try{ assertTrue(sched.empty() == true); }
+			catch(AssertionError e){ p("empty() works", false); }
+
+			assertTrue(sched.size() == i);
+			p(sched.remove(), false);
+			assertTrue(sched.size() == i-1);
+		}
+
+		assertTrue(sched.empty() == true);
+
+		try{
+			sched.runTask();
+		} catch(Exception e){
+			p("runTask() throws when queue is empty", true);
+		}
+
+		p(Arrays.deepToString(sched.array), true);
+
+		int x = 5;
+		yo(sched, new String("" + x), x++);
+		p(Arrays.deepToString(sched.array), false);
+		yo(sched, new String("" + x), x++);
+		p(Arrays.deepToString(sched.array), false);
+		yo(sched, new String("" + x), x++);
+		p(Arrays.deepToString(sched.array), false);
+		yo(sched, new String("" + x), x++);
+		p(Arrays.deepToString(sched.array), true);
+		p(sched.remove(), false);
+		yo(sched, new String("" + x), x++);
+		p(Arrays.deepToString(sched.array), true);
+
+		for(int i=4; i>0; i--){
+			assertTrue(sched.size() == i);
+			p(sched.remove(), false);
+			assertTrue(sched.size() == i-1);
+		}
+
+		yo(sched, new String("" + x), x++);
+		p(Arrays.deepToString(sched.array), false);
+		yo(sched, new String("" + x), x++);
+		p(Arrays.deepToString(sched.array), false);
+		yo(sched, new String("" + x), x++);
+		p(Arrays.deepToString(sched.array), false);
+		yo(sched, new String("" + x), x++);
+		p(Arrays.deepToString(sched.array), true);
+
+
+	}
+
+	public static <E> void p(E e, boolean ln){
+		System.out.println(e);
+		if(ln){
+			System.out.println();
+		}
+	}
+
+	public static void yo(Scheduler sched, String n, int x){
+		sched.add(new Task(n, x) {
+			/*
+			 * running this task takes 2 Strings as parameters,
+			 * both representing a long
+			 */
+			@Override public Object run() {
+				return x;
+			}
+		});
+	}
 	
 }
