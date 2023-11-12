@@ -1,6 +1,6 @@
 package edu.ics211.h09;
 
-import java.util.Arrays;
+// import java.util.Arrays;
 import java.util.EmptyStackException;
 
 /**

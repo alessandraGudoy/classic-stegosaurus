@@ -64,7 +64,7 @@ public class Scheduler {
 	 * @return task at the head of queue (next task to be called)
 	 * @throws RuntimeException if queue is empty
 	 */
-	public Task element() {		// TODO
+	public Task element() {
 
 		if(size == 0){
 			throw new RuntimeException("Queue is empty -- no tasks to return");
@@ -78,7 +78,7 @@ public class Scheduler {
 	 * @return task at the head of the queue
 	 * @throws RuntimeException if queue is empty
 	 */
-	public Task remove() {		// TODO
+	public Task remove() {
 
 		if(size == 0){
 			throw new RuntimeException("Queue is empty -- no tasks to remove");
@@ -95,7 +95,7 @@ public class Scheduler {
 	 * @return the result returned by the task
 	 * @throws RuntimeException if queue "is empty" (no jobs to do in the queue)
 	 */
-	public Object runTask() {	// TODO
+	public Object runTask() {
 
 		if(size == 0){
 			throw new RuntimeException("Queue is empty -- no tasks to be done");

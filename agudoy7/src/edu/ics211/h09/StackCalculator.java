@@ -16,11 +16,11 @@ public class StackCalculator {
     private static int numOfOperands = 0;
     
     public static void main(String[] args){
-        System.out.println(test4());
-        System.out.println(test5());
+        // System.out.println(test4());
+        // System.out.println(test5());
     }
 
-    public static boolean test4(){
+    /*public static boolean test4(){
         StackCalculator calc = new StackCalculator();
         try{
             calc.calculate('*');
@@ -28,9 +28,9 @@ public class StackCalculator {
         } catch(Exception e){
             return true;
         }
-    }
+    }*/
 
-    public static boolean test5(){
+    /*public static boolean test5(){
         StackCalculator calc = new StackCalculator();
         calc.push(4);
         try{
@@ -39,7 +39,7 @@ public class StackCalculator {
         } catch(Exception e){
             return true;
         }
-    }
+    }*/
 
      /**
      * Removes and returns top value of the stack

@@ -245,6 +245,8 @@ public class SortedLinkedList<E extends Comparable<E>> implements SortedLinkedLi
 		System.out.println("Tail: " + list.tail.item);
 		System.out.println("Size: " + list.size);
 
+		list.addAtEnd("q");
+
 	}
 
 	/* * * * * */
