@@ -204,6 +204,7 @@ public class Scheduler {
 		} catch (RuntimeException re) {
 			System.out.println("Exception thrown properly.");
 		}
+		System.out.println("END OF MAIN");
 	}
 
 	/* * * START OF TASK DEFINITION * * */
