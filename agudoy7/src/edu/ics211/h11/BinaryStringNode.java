@@ -47,6 +47,10 @@ public class BinaryStringNode implements Comparable<BinaryStringNode> {
 	public void incrementOccurrences(){
 		occurrences = occurrences + 1;
 	}
+
+    public void decrementOccurrences(){
+        occurrences = occurrences - 1;
+    }
 	
 	public String toString(){
 		return new String("VALUE: " + key);
