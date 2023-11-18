@@ -7,8 +7,8 @@ package edu.ics211.h11;
  */
 public class BinaryStringNode implements Comparable<BinaryStringNode> {
 
-    String key;
-    long occurrences;
+    private String key;
+    private long occurrences;
     BinaryStringNode left;
     BinaryStringNode right;
 	
@@ -31,6 +31,10 @@ public class BinaryStringNode implements Comparable<BinaryStringNode> {
 	public String getKey(){
 		return key;
 	}
+
+    public int getOccurrences(){
+        return (int) occurrences;
+    }
 	
 	public BinaryStringNode getLeft(){
 		return left;
@@ -49,8 +53,18 @@ public class BinaryStringNode implements Comparable<BinaryStringNode> {
 	}
 	
 	public int compareTo(BinaryStringNode o) {
-		return key.compareTo(o.key);
+		return compareTo(o.key);
 	}
+
+    public int compareTo(String str){
+        int minLength = Math.min(key.length(), str.length());
+        for (int i = 0; i < minLength; i++) {
+            if (key.charAt(i) != str.charAt(i)) {
+                return key.charAt(i) - str.charAt(i);
+            }
+        }
+        return key.length() - str.length();
+    }
 	
 	
 }	
