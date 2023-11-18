@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * Constructor, add, size, height, remove, occurrences
+ * Constructor, add, size, height, remove, occurrences, removeOne
  * 
  * @author Benjamin Strauss, Edo Biagioni, Alessandra Gudoy
  */
@@ -18,11 +18,19 @@ public class BinaryStringTree {
 	public static void main(String[] args) throws FileNotFoundException{
 		BinaryStringTree tree = new BinaryStringTree("/Users/agudoy/Desktop/UH_FALL2023/ICS 211/classic-stegosaurus/agudoy7/src/edu/ics211/h11/file.txt");
 		BinaryStringTree constitution = new BinaryStringTree("/Users/agudoy/Desktop/UH_FALL2023/ICS 211/classic-stegosaurus/agudoy7/src/edu/ics211/h11/constitution.txt");
-		System.out.println(tree.height());
+		System.out.println(tree.size());
 		System.out.println(tree.occurrences("peter"));
-		System.out.println(tree.occurrences("piper"));
-		System.out.println(tree.occurrences("sandy"));
-		System.out.println(constitution.size());
+
+		tree.removeOne("peter");
+		System.out.println(tree.size());
+		System.out.println(tree.occurrences("peter"));
+
+		tree.removeOne("the");
+		System.out.println(tree.size());
+		System.out.println(tree.occurrences("the"));
+		// System.out.println(constitution.size());
+
+		System.out.println(tree.keys().toString());
 
 	}
 	
@@ -82,9 +90,16 @@ public class BinaryStringTree {
 
 	public java.util.Set keys() {
 		java.util.Set<String> result = new java.util.HashSet<>();
-		// TODO: call a private recursive helper method to fill the
-		// set with all the keys in the tree
+		goThrough(root, result);
 		return result;
+	}
+
+	protected void goThrough(BinaryStringNode node, java.util.Set<String> set){
+		if(node != null){
+			set.add(node.getKey());
+			goThrough(node.left, set);
+			goThrough(node.right, set);
+		}
 	}
 	
 	/**
