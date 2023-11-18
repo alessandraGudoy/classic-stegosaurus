@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 public class BinaryStringTree {
 
-	//TODO add all class variables here
 	protected BinaryStringNode root = null;
 	protected int size;
 
@@ -123,7 +122,13 @@ public class BinaryStringTree {
 	 * @param key
 	 */
 	public void removeOne(String key) {
-		//TODO
+		BinaryStringNode node = searchFor(root, key);
+
+		if(node.getOccurrences() == 1){
+			remove(key);
+		} else{
+			node.decrementOccurrences();
+		}
 	}
 	
 	/**
