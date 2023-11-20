@@ -57,7 +57,9 @@ public class BinaryStringTree {
 				}
 			}
 
-			add(str);
+			if(!str.equals("")){
+				add(str);
+			}
 		}
 		scanner.close();
 
