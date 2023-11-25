@@ -72,9 +72,7 @@ public class UHM_Hashtable<K,V> {
 	 * @throws NullPointerException if given key or value is null
 	 */
 	public void put(K key, V value) {	// TODO
-		if(key == null || value == null){
-			throw new NullPointerException();
-		}
+		checkKey(key, value);
 
 		int h = key.hashCode() % table.length;
 
@@ -105,9 +103,7 @@ public class UHM_Hashtable<K,V> {
 	 * @throws NullPointerException if given key or value is null
 	 */
 	public V replace(K key, V value) {	// TODO
-		if(key == null || value == null){
-			throw new NullPointerException();
-		}
+		checkKey(key, value);
 		
 		int h = key.hashCode() % table.length;
 
@@ -191,6 +187,12 @@ public class UHM_Hashtable<K,V> {
 		for(int i=0; i< table.length; i++){
             if(table[i]!=null){System.out.println(table[i].toString());}
         }
+	}
+
+	private void checkKey(K key, V value){
+		if(key == null || value == null){
+			throw new NullPointerException();
+		}
 	}
 	
 	/** Do Not Change - Used in grading */
