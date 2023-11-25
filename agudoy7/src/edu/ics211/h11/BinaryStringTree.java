@@ -28,7 +28,7 @@ public class BinaryStringTree {
 		tree.removeOne("the");
 		System.out.println(tree.size());
 		System.out.println(tree.occurrences("the"));
-		// System.out.println(constitution.size());
+		System.out.println(constitution.size());
 
 		System.out.println(tree.keys().toString());
 
