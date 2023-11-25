@@ -69,14 +69,30 @@ public class UHM_Hashtable<K,V> {
 	 * Adds a key-value pair into the hash table
 	 * @param key of key-value pair to add
 	 * @param value to add usive given key
+	 * @throws NullPointerException if given key or value is null
 	 */
-	public void put(K key, V value) {
+	public void put(K key, V value) {	// TODO
+		if(key == null || value == null){
+			throw new NullPointerException();
+		}
 
-		 size = size + 1;
+		int h = key.hashCode() % table.length;
+
+		if(table[h] == null){
+			table[h] = new LinkedList<>();
+		}
+
+		table[h].add(new Pair<K,V>(key, value));
+
+		size = size + 1;
 	}
 	
-	public V get(K key) {
-		//TODO get the value associated with key K
+	/**
+	 * Get the value associated with given key
+	 * @param key
+	 * @return
+	 */
+	public V get(K key) {				// TODO
 		return null;
 	}
 	
@@ -86,8 +102,18 @@ public class UHM_Hashtable<K,V> {
 	 * @param key of key-value pair to add
 	 * @param value to add using given key
 	 * @return existing value at given key
+	 * @throws NullPointerException if given key or value is null
 	 */
 	public V replace(K key, V value) {	// TODO
+		if(key == null || value == null){
+			throw new NullPointerException();
+		}
+		
+		int h = key.hashCode() % table.length;
+
+		for(Pair<K, V> pair : table[h]){
+			
+		}
 		return null;
 	}
 	
@@ -145,7 +171,26 @@ public class UHM_Hashtable<K,V> {
 	 * @return the maximum length of any list
 	 */
 	public int maxListLen() {			// TODO
-		return 0;
+		int max = 0;
+
+		for(int i=0; i<table.length; i++){
+			int size = 0;
+			if(table[i] != null){
+				size = table[i].size();
+			}
+
+			if(size >= max){
+				max = size;
+			}
+		}
+
+		return max;
+	}
+
+	public void p(){
+		for(int i=0; i< table.length; i++){
+            if(table[i]!=null){System.out.println(table[i].toString());}
+        }
 	}
 	
 	/** Do Not Change - Used in grading */
