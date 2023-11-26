@@ -36,9 +36,14 @@ public class UHM_Hashtable<K,V> {
 	
 	/**
 	 * 
-	 * @param initialCapacity initial size of array
+	 * @param initialCapacity initial size of array, must be greater than 0
+	 * @throws RuntimeException if initial size given is less than or equal to 0
 	 */
 	public UHM_Hashtable(int initialCapacity) {
+		if(initialCapacity <= 0){
+			throw new RuntimeException("Initial capacity must be greater than 0");
+		}
+
 		INITAL_CAPACITY = initialCapacity;
 		LOAD_FACTOR = 0.75;
 		table = new LinkedList[INITAL_CAPACITY];
@@ -47,8 +52,13 @@ public class UHM_Hashtable<K,V> {
 	/**
 	 * 
 	 * @param loadFactorOnResize when the load factor exceeds this, resize
+	 * @throws RuntimeException if not (0 < load factor <= 1)
 	 */
 	public UHM_Hashtable(double loadFactorOnResize) {
+		if(0.0 >= loadFactorOnResize || loadFactorOnResize > 1){
+			throw new RuntimeException("Load Factor must be between 0 and 1.....0 < load factor <= 1");
+		}
+
 		INITAL_CAPACITY = 11;
 		LOAD_FACTOR = loadFactorOnResize;
 		table = new LinkedList[INITAL_CAPACITY];
@@ -58,8 +68,17 @@ public class UHM_Hashtable<K,V> {
 	 * 
 	 * @param initialCapacity initial size of array	
 	 * @param loadFactorOnResize when the load factor exceeds this, resize
+	 * @throws RuntimeException if initialCapacity <= 0 or not (0 < load factor <= 1)
 	 */
 	public UHM_Hashtable(int initialCapacity, double loadFactorOnResize) {
+		if(initialCapacity <= 0){
+			throw new RuntimeException("Initial capacity must be greater than 0");
+		}
+
+		if(0.0 >= loadFactorOnResize || loadFactorOnResize > 1){
+			throw new RuntimeException("Load Factor must be between 0 and 1.....0 < load factor <= 1");
+		}
+
 		INITAL_CAPACITY = initialCapacity;
 		LOAD_FACTOR = loadFactorOnResize;
 		table = new LinkedList[INITAL_CAPACITY];
@@ -83,14 +102,31 @@ public class UHM_Hashtable<K,V> {
 		table[h].add(new Pair<K,V>(key, value));
 
 		size = size + 1;
+
+		if((double) size / table.length >= LOAD_FACTOR){
+			rehash(table.length * 2 + 1);
+		}
 	}
 	
 	/**
 	 * Get the value associated with given key
-	 * @param key
-	 * @return
+	 * @param key of value to return
+	 * @return value of given key
 	 */
-	public V get(K key) {				// TODO
+	public V get(K key) {
+		if(key == null){
+			throw new NullPointerException();
+		}
+		int index = key.hashCode() % table.length;
+
+		if(table[index] != null){
+			for(Pair<K, V> pair : table[index]){
+				if(pair.x.equals(key)){
+					return pair.y;
+				}
+			}
+		}
+
 		return null;
 	}
 	
@@ -107,9 +143,27 @@ public class UHM_Hashtable<K,V> {
 		
 		int h = key.hashCode() % table.length;
 
-		for(Pair<K, V> pair : table[h]){
-			
+		if(table[h] != null){
+			for(Pair<K, V> pair : table[h]){
+				if(pair.x.equals(key)){
+					V item = pair.y;
+					pair.y = value;
+					return item;
+				}
+			}
 		}
+
+		if(table[h] == null){
+			table[h] = new LinkedList<>();
+		}
+
+		table[h].add(new Pair<K, V>(key, value));
+		size = size + 1;
+
+		if((double) size / table.length >= LOAD_FACTOR){
+			rehash(table.length * 2 + 1);
+		}
+
 		return null;
 	}
 	
@@ -119,10 +173,28 @@ public class UHM_Hashtable<K,V> {
 	 * @return value of the key to be removed
 	 * @throws RuntimeException if key not found
 	 */
-	public V remove(K key) {			// TODO
+	public V remove(K key) {
 
-		size = size - 1;
-		return null;
+		if(key == null){
+			throw new NullPointerException();
+		}
+
+		int index = key.hashCode() % table.length;
+
+		if(table[index] == null){
+			throw new RuntimeException("Key does not exist");
+		}
+
+		for(int i=0; i<table[index].size(); i++){
+			if(table[index].get(i).x.equals(key)){
+				V item = table[index].get(i).y;
+				table[index].remove(i);
+				size = size - 1;
+				return item;
+			}
+		}
+
+		throw new RuntimeException("Key does not exist");
 	}
 	
 	/**
@@ -136,7 +208,7 @@ public class UHM_Hashtable<K,V> {
 	/**
 	 * Removes all elements from the hash table
 	 */
-	public void clear() {				// TODO
+	public void clear() {
 		for(int i=0; i<table.length; i++){
 			if(table[i] != null){
 				table[i].clear();
@@ -151,7 +223,7 @@ public class UHM_Hashtable<K,V> {
 	 * @return load factor of hash table
 	 */
 	public double loadFactor() {
-		return LOAD_FACTOR;
+		return size / table.length;
 	}
 	
 	/**
@@ -159,14 +231,31 @@ public class UHM_Hashtable<K,V> {
 	 * @param size the new size of the array
 	 */
 	public void rehash(int size) {		// TODO
-		
+		LinkedList<Pair<K, V>>[] copy = table;
+
+		table = new LinkedList[size];
+
+		for(int i=0; i<copy.length; i++){
+			if(copy[i] != null){
+				for(Pair<K, V> pair : copy[i]){
+					int index = pair.x.hashCode() % table.length;
+					
+					if(table[index] == null){
+						table[index] = new LinkedList<>();
+					}
+
+					table[index].add(pair);
+				}
+			}
+		}
+
 	}
 	
 	/**
 	 * 
 	 * @return the maximum length of any list
 	 */
-	public int maxListLen() {			// TODO
+	public int maxListLen() {
 		int max = 0;
 
 		for(int i=0; i<table.length; i++){
@@ -185,7 +274,7 @@ public class UHM_Hashtable<K,V> {
 
 	public void p(){
 		for(int i=0; i< table.length; i++){
-            if(table[i]!=null){System.out.println(table[i].toString());}
+            if(table[i]!=null){System.out.println(i + "-" + table[i].toString());}
         }
 	}
 

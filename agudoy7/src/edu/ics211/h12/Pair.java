@@ -53,5 +53,5 @@ public class Pair<X, Y> implements Serializable {
 		}
 	}
 	
-	public String toString() { return x + "," + y; }
+	public String toString() { return x + "=" + y; }
 }
