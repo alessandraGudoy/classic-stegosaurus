@@ -171,7 +171,7 @@ public class UHM_Hashtable<K,V> {
 	 * Removes a key-value pair from the hash table and returns the value if key is found
 	 * @param key, the key-value pair to remove
 	 * @return value of the key to be removed
-	 * @throws RuntimeException if key not found
+	 * @throws NullPointerException if key is null
 	 */
 	public V remove(K key) {
 
@@ -182,7 +182,8 @@ public class UHM_Hashtable<K,V> {
 		int index = key.hashCode() % table.length;
 
 		if(table[index] == null){
-			throw new RuntimeException("Key does not exist");
+			return null;
+			// throw new RuntimeException("Key does not exist");
 		}
 
 		for(int i=0; i<table[index].size(); i++){
@@ -194,7 +195,8 @@ public class UHM_Hashtable<K,V> {
 			}
 		}
 
-		throw new RuntimeException("Key does not exist");
+		return null;
+		// throw new RuntimeException("Key does not exist");
 	}
 	
 	/**
