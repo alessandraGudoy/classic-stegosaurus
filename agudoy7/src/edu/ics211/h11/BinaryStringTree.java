@@ -90,7 +90,7 @@ public class BinaryStringTree {
 			
 	}
 
-	public java.util.Set keys() {
+	public java.util.Set<String> keys() {
 		java.util.Set<String> result = new java.util.HashSet<>();
 		goThrough(root, result);
 		return result;
