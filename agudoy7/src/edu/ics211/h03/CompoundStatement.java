@@ -7,7 +7,7 @@ package edu.ics211.h03;
 
 public abstract class CompoundStatement extends Statement{
 	
-	public CompoundStatement() { super(); }
+	public CompoundStatement() { }
 
 	public CompoundStatement(String[] tokes) throws InvalidStatementException {
 		if(isConditional(tokes) || isWhileLoop(tokes)) {

@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Assignment extends BasicStatement{
 	
-	public Assignment() { super(); }
+	public Assignment() { }
 	
 	public Assignment(String[] tokens) throws InvalidStatementException {
 		

@@ -9,21 +9,17 @@ public abstract class Statement implements StatementInterface{
 
 	protected String[] tokens;
 	
-	public Statement() {}
-	
+	public Statement() { }
 	
 	public abstract boolean isCompound();
-	
 	
 	public int numTokens() {
 		return this.tokens.length;
 	}
 	
-	
 	public String getToken(int index) {
 		return this.tokens[index];
 	}
-	
 	
 	public String toString() {
 		
@@ -36,7 +32,6 @@ public abstract class Statement implements StatementInterface{
 		
 		return output.trim();
 	}
-	
 	
 	public boolean equals(Object obj) {
 		if(obj == null || !(obj instanceof Statement)) {
@@ -59,7 +54,6 @@ public abstract class Statement implements StatementInterface{
 			return true;
 		}
 	}
-	
 	
 	protected static final boolean isJavaIdentifier(String str) {
 		

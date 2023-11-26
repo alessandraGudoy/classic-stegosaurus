@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class WhileLoop extends CompoundStatement{
 	
-	public WhileLoop() { super(); }
+	public WhileLoop() { }
 
 	public WhileLoop(String[] tokens) throws InvalidStatementException {
 		Objects.requireNonNull(tokens);

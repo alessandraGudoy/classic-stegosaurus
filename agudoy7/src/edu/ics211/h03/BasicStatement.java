@@ -7,7 +7,7 @@ package edu.ics211.h03;
 
 public class BasicStatement extends Statement{
 	
-	public BasicStatement() { super(); }
+	public BasicStatement() { }
 	
 	public BasicStatement(String[] tokes) throws InvalidStatementException {
 		if(isMethodCall(tokes) || isAssignment(tokes)) {

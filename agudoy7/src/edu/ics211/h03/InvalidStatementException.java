@@ -7,9 +7,7 @@ package edu.ics211.h03;
 
 public class InvalidStatementException extends Exception{
 
-    public InvalidStatementException(){
-        super();
-    }
+    public InvalidStatementException(){ }
 
     public InvalidStatementException(String str){
         super(str);
