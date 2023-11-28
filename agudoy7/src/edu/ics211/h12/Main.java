@@ -6,9 +6,9 @@ public class Main {
         // System.out.println();
         // System.out.println(test1());
         // System.out.println();
-        System.out.println(test2());
+        // System.out.println(test2());
         // System.out.println();
-        // System.out.println(test7());
+        System.out.println(test7());
 
 
     }
@@ -93,7 +93,15 @@ public class Main {
     }
 
     public static boolean test7(){
+        UHM_Hashtable<Integer, Integer> hash = new UHM_Hashtable<>(100, 100);
+
+        for(int i=0; i<9999; ++i){
+            hash.put(i, (int) Math.random());
+        }
+
+        if(hash.maxListLen() < 95){ return false; }
+
         return true;
     }
-    
+
 }
