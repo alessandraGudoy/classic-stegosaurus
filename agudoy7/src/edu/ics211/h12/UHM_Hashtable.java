@@ -75,9 +75,9 @@ public class UHM_Hashtable<K,V> {
 			throw new RuntimeException("Initial capacity must be greater than 0");
 		}
 
-		if(0.0 >= loadFactorOnResize || loadFactorOnResize > 1){
-			throw new RuntimeException("Load Factor must be between 0 and 1.....0 < load factor <= 1");
-		}
+		// if(0.0 >= loadFactorOnResize || loadFactorOnResize > 1){
+		// 	throw new RuntimeException("Load Factor must be between 0 and 1.....0 < load factor <= 1");
+		// }
 
 		INITAL_CAPACITY = initialCapacity;
 		LOAD_FACTOR = loadFactorOnResize;
@@ -94,6 +94,15 @@ public class UHM_Hashtable<K,V> {
 		checkKey(key, value);
 
 		int h = key.hashCode() % table.length;
+
+		if(table[h] != null){
+			for(Pair<K, V> pair : table[h]){
+				if(pair.x.equals(key)){
+					pair.y = value;
+					return;
+				}
+			}
+		}
 
 		if(table[h] == null){
 			table[h] = new LinkedList<>();
@@ -225,7 +234,7 @@ public class UHM_Hashtable<K,V> {
 	 * @return load factor of hash table
 	 */
 	public double loadFactor() {
-		return size / table.length;
+		return (double) size / table.length;
 	}
 	
 	/**
