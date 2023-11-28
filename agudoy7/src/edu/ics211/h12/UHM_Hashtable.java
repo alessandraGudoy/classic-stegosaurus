@@ -55,9 +55,9 @@ public class UHM_Hashtable<K,V> {
 	 * @throws RuntimeException if not (0 < load factor <= 1)
 	 */
 	public UHM_Hashtable(double loadFactorOnResize) {
-		if(0.0 >= loadFactorOnResize || loadFactorOnResize > 1){
-			throw new RuntimeException("Load Factor must be between 0 and 1.....0 < load factor <= 1");
-		}
+		// if(0.0 >= loadFactorOnResize || loadFactorOnResize > 1){
+		// 	throw new RuntimeException("Load Factor must be between 0 and 1.....0 < load factor <= 1");
+		// }
 
 		INITAL_CAPACITY = 11;
 		LOAD_FACTOR = loadFactorOnResize;
