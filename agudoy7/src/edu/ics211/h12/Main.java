@@ -4,9 +4,9 @@ public class Main {
     public static void main(String[] args){
         // System.out.println(test0());
         // System.out.println();
-        System.out.println(test1());
+        // System.out.println(test1());
         // System.out.println();
-        // System.out.println(test2());
+        System.out.println(test2());
         // System.out.println();
         // System.out.println(test7());
 
@@ -65,10 +65,35 @@ public class Main {
     }
 
     public static boolean test2(){
+        UHM_Hashtable<String, String> hash = new UHM_Hashtable<>(8, 0.75);
+
+        // put aah=val0 and aap=val1 into hash table
+        // check if max list length was 2
+        hash.put("aah", "val0");
+        hash.put("aap", "val1");
+        if(hash.maxListLen() != 2){ return false; }
+
+        // check if size of hash table is 2
+        if(hash.size() != 2){ return false; }
+
+        // check if load factor is 0.25
+        if(hash.loadFactor() != 0.25){ return false; }
+
+        // clear hash
+        hash.clear();
+
+        // check if size of hash table is 0
+        if(hash.size() != 0){return false; }
+
+        // check if current load factor is 0
+        if(hash.loadFactor() != 0){ return false; }
+
+
         return true;
     }
 
     public static boolean test7(){
         return true;
     }
+    
 }
