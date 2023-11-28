@@ -2,12 +2,12 @@ package edu.ics211.h12;
 
 public class Main {
     public static void main(String[] args){
-        // System.out.println(test0());
-        // System.out.println();
-        // System.out.println(test1());
-        // System.out.println();
-        // System.out.println(test2());
-        // System.out.println();
+        System.out.println(test0());
+        System.out.println();
+        System.out.println(test1());
+        System.out.println();
+        System.out.println(test2());
+        System.out.println();
         System.out.println(test7());
 
 
@@ -72,21 +72,26 @@ public class Main {
         hash.put("aah", "val0");
         hash.put("aap", "val1");
         if(hash.maxListLen() != 2){ return false; }
+        System.out.print("*1");
 
         // check if size of hash table is 2
         if(hash.size() != 2){ return false; }
+        System.out.print("*2");
 
         // check if load factor is 0.25
         if(hash.loadFactor() != 0.25){ return false; }
+        System.out.print("*3");
 
         // clear hash
         hash.clear();
 
         // check if size of hash table is 0
         if(hash.size() != 0){return false; }
+        System.out.print("*4");
 
         // check if current load factor is 0
         if(hash.loadFactor() != 0){ return false; }
+        System.out.print("*5");
 
 
         return true;
