@@ -14,7 +14,7 @@ public class Conditional extends CompoundStatement{
 	public Conditional(String[] tokens) throws InvalidStatementException {
 		
 		Objects.requireNonNull(tokens);
-		
+
 		boolean elseFound = false;
 		
 		for(int i=2; i<tokens.length-1; i++) {
@@ -23,7 +23,8 @@ public class Conditional extends CompoundStatement{
 			}
 		}
 		
-		if(!tokens[0].equals("if") || !tokens[1].equals("(") || !tokens[tokens.length-1].equals("}") || !elseFound) {
+		if(!(tokens[0].equals("if") && tokens[1].equals("(") && 
+				tokens[tokens.length-1].equals("}") && elseFound)) {
 			throw new InvalidStatementException();
 		}
 		

@@ -17,25 +17,23 @@ public abstract class CompoundStatement extends Statement{
 		}
 	}
 
-	
 	public boolean isCompound() {
 		return true;
 	}
 	
-	
 	public abstract int numOfParts();
-	
 	
 	protected boolean isConditional(String[] toks) {
 		boolean elseFound = false;
 		
 		for(int i=2; i<tokens.length-1; i++) {
 			if(tokens[i].equals("else")) {
-			elseFound = true;
+				elseFound = true;
 			}
 		}
 		
-		return tokens[0].equals("if") && tokens[1].equals("(") && tokens[tokens.length-1].equals("}") && elseFound;
+		return tokens[0].equals("if") && tokens[1].equals("(") && 
+				tokens[tokens.length-1].equals("}") && elseFound;
 	}
 	
 	protected boolean isWhileLoop(String[] toks) {

@@ -12,11 +12,11 @@ public class MethodCall extends BasicStatement{
 	public MethodCall() { }
 
 	public MethodCall(String[] tokens) throws InvalidStatementException {
+		
 		Objects.requireNonNull(tokens);
 		
-		if(!isJavaIdentifier(tokens[0]) || !tokens[1].equals("(") ||
-				!tokens[tokens.length-2].equals(")") || !tokens[tokens.length-1].equals(";")) {
-			
+		if(!(isJavaIdentifier(tokens[0]) && tokens[1].equals("(") &&
+			tokens[tokens.length-2].equals(")") && tokens[tokens.length-1].equals(";"))) {
 			throw new InvalidStatementException();
 		}
 		

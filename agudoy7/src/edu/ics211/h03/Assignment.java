@@ -13,11 +13,10 @@ public class Assignment extends BasicStatement{
 	
 	public Assignment(String[] tokens) throws InvalidStatementException {
 		
-		super();
-		
 		Objects.requireNonNull(tokens);
 		
-		if(!isJavaIdentifier(tokens[0]) || !tokens[1].equals("=") || !tokens[tokens.length-1].equals(";")) {
+		if(!(isJavaIdentifier(tokens[0]) && tokens[1].equals("=") && 
+				tokens[tokens.length-1].equals(";"))){
 			throw new InvalidStatementException();
 		}
 		

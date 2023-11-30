@@ -90,7 +90,7 @@ public class UHM_Hashtable<K,V> {
 	 * @param value to add usive given key
 	 * @throws NullPointerException if given key or value is null
 	 */
-	public void put(K key, V value) {	// TODO
+	public void put(K key, V value) {
 		checkKey(key, value);
 
 		int h = key.hashCode() % table.length;
@@ -147,7 +147,7 @@ public class UHM_Hashtable<K,V> {
 	 * @return existing value at given key
 	 * @throws NullPointerException if given key or value is null
 	 */
-	public V replace(K key, V value) {	// TODO
+	public V replace(K key, V value) {
 		checkKey(key, value);
 		
 		int h = key.hashCode() % table.length;
@@ -241,7 +241,7 @@ public class UHM_Hashtable<K,V> {
 	 * Rehashes the hash table and sets the size of the array given by input
 	 * @param size the new size of the array
 	 */
-	public void rehash(int size) {		// TODO
+	public void rehash(int size) {
 		LinkedList<Pair<K, V>>[] copy = table;
 
 		table = new LinkedList[size];
