@@ -9,7 +9,15 @@ public abstract class Statement implements StatementInterface{
 
 	protected String[] tokens;
 	
-	public Statement() { }
+public Statement() { /*System.out.println("super()");*/ }
+
+    public Statement(String[] tokes) throws InvalidStatementException {
+        if(isAssignment(tokes) || isMethodCall(tokes) || isWhileLoop(tokes) || isConditional(tokes)){
+            this.tokens = tokes;
+        } else{
+            throw new InvalidStatementException();
+        }
+    }
 	
 	public abstract boolean isCompound();
 	
@@ -102,6 +110,51 @@ public abstract class Statement implements StatementInterface{
 		}
 		
 		return true;
+	}
+
+    /**
+	 * Check if given array of tokens create a method call
+	 * Given array is a valid method call if:
+	 * 		the first token is a Java identifier, the second token is "(",
+	 * 		the second to last token is ")", and the last token is ";"
+	 * 		
+	 * @param toks, array of tokens
+	 * @return whether or not if input is a valid method call
+	 */
+	protected boolean isMethodCall(String[] toks) {
+		return isJavaIdentifier(toks[0]) && toks[1].equals("(") &&
+				toks[toks.length-2].equals(")") && toks[toks.length-1].equals(";");
+	}
+	
+	/**
+	 * Check if given array of tokens is a valid assignment statement
+	 * Given array is a valid assignment statement if:
+	 * 		the first token is a Java identifier, the second token is "=",
+	 * 		and the last toke is ";"
+	 * 
+	 * @param toks, array of tokens
+	 * @return whether or not if input is a valid assignment statement
+	 */
+	protected boolean isAssignment(String[] toks) {
+		return isJavaIdentifier(toks[0]) && toks[1].equals("=") && 
+				toks[toks.length-1].equals(";");
+	}
+
+    protected boolean isConditional(String[] toks) {
+		boolean elseFound = false;
+		
+		for(int i=2; i<tokens.length-1; i++) {
+			if(tokens[i].equals("else")) {
+				elseFound = true;
+			}
+		}
+		
+		return tokens[0].equals("if") && tokens[1].equals("(") && 
+				tokens[tokens.length-1].equals("}") && elseFound;
+	}
+	
+	protected boolean isWhileLoop(String[] toks) {
+		return tokens[0].equals("while") && tokens[1].equals("(");
 	}
 	
 }

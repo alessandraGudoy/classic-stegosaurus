@@ -9,10 +9,11 @@ import java.util.Objects;
 
 public class Assignment extends BasicStatement{
 	
-	public Assignment() { }
+	public Assignment() { super(); }
 	
 	public Assignment(String[] tokens) throws InvalidStatementException {
-		
+        super();
+
 		Objects.requireNonNull(tokens);
 		
 		if(!(isJavaIdentifier(tokens[0]) && tokens[1].equals("=") && 

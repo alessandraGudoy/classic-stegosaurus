@@ -9,13 +9,14 @@ import java.util.Objects;
 
 public class MethodCall extends BasicStatement{
 	
-	public MethodCall() { }
+	public MethodCall() { super(); }
 
 	public MethodCall(String[] tokens) throws InvalidStatementException {
-		
+		super();
+
 		Objects.requireNonNull(tokens);
 		
-		if(!(isJavaIdentifier(tokens[0]) && tokens[1].equals("(") &&
+		if(tokens.length < 4 || !(isJavaIdentifier(tokens[0]) && tokens[1].equals("(") &&
 			tokens[tokens.length-2].equals(")") && tokens[tokens.length-1].equals(";"))) {
 			throw new InvalidStatementException();
 		}
