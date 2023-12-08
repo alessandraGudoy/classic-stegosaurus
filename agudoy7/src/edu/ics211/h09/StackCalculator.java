@@ -82,6 +82,7 @@ public class StackCalculator {
      */
 	public static void calculate(char operator) {
 		if(!isValidOperand(operator)) { throw new RuntimeException("Invalid Operand"); }
+        if(numOfOperands < 2) {throw new RuntimeException(); }
 		if(operator == '÷') { operator = '/'; }
 
         long num2 = pop();
