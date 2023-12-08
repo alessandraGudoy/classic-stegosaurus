@@ -11,7 +11,7 @@ import java.util.Arrays;
  * (Assume index parameter is a valid random number for a list of size n)
  * 	Runtimes:			[Best Case]		[Average Case]		[Worst Case]
  *  Add at index:			O(1)			O(n)				O(n)
- *  Add at end:				O(1)			O(n)				O(n)
+ *  Add at end:				O(1)			O(1)				O(n)
  *  Remove at index:		O(1)			O(n)				O(n)
  * 
  * 	Best case for adding at an index is constant time, O(1), when the array is large enough and we are adding to the end of the array, 
