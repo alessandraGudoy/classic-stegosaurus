@@ -1,0 +1,123 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "HW1",
+            "request": "launch",
+            "args": [
+                "/Users/agudoy/Desktop/AY 2023-2024/UH_FALL2023/ICS 211/classic-stegosaurus/agudoy7/src/edu/ics211/h01/file.txt",
+                "/Users/agudoy/Desktop/AY 2023-2024/UH_FALL2023/ICS 211/classic-stegosaurus/agudoy7/src/edu/ics211/h01/HW1.java"
+            ],
+            "mainClass": "agudoy7/edu.ics211.h01.HW1",
+            "projectName": "agudoy7"
+        },
+        {
+            "type": "java",
+            "name": "LexScan",
+            "request": "launch",
+            "mainClass": "agudoy7/edu.ics211.h02.LexScan",
+            "projectName": "agudoy7"
+        },
+        {
+            "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "agudoy7/edu.ics211.h03.Test",
+            "projectName": "agudoy7"
+        },
+        {
+            "type": "java",
+            "name": "hw04",
+            "request": "launch",
+            "mainClass": "agudoy7/edu.ics211.h04.hw04",
+            "projectName": "agudoy7"
+        },
+        {
+            "type": "java",
+            "name": "HW05",
+            "request": "launch",
+            "mainClass": "agudoy7/edu.ics211.h05.HW05",
+            "projectName": "agudoy7"
+        },
+        {
+            "type": "java",
+            "name": "Test(1)",
+            "request": "launch",
+            "mainClass": "agudoy7/edu.ics211.h06.Test",
+            "projectName": "agudoy7"
+        },
+        {
+            "type": "java",
+            "name": "SortedLinkedList",
+            "request": "launch",
+            "mainClass": "agudoy7/edu.ics211.h07.SortedLinkedList",
+            "projectName": "agudoy7"
+        },
+        {
+            "type": "java",
+            "name": "IteratorTest",
+            "request": "launch",
+            "mainClass": "agudoy7/edu.ics211.h08.IteratorTest",
+            "projectName": "agudoy7"
+        },
+        {
+            "type": "java",
+            "name": "StackCalculator",
+            "request": "launch",
+            "mainClass": "agudoy7/edu.ics211.h09.StackCalculator",
+            "projectName": "agudoy7"
+        },
+        {
+            "type": "java",
+            "name": "Scheduler",
+            "request": "launch",
+            "mainClass": "agudoy7/edu.ics211.h10.Scheduler",
+            "projectName": "agudoy7"
+        },
+        {
+            "type": "java",
+            "name": "BinaryStringTree",
+            "request": "launch",
+            "mainClass": "agudoy7/edu.ics211.h11.BinaryStringTree",
+            "projectName": "agudoy7"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "agudoy7/edu.ics211.h12.Main",
+            "projectName": "agudoy7"
+        },
+        {
+            "type": "java",
+            "name": "ReclaimStorage",
+            "request": "launch",
+            "mainClass": "agudoy7/edu.ics211.h13.ReclaimStorage",
+            "projectName": "agudoy7"
+        },
+        {
+            "type": "java",
+            "name": "VisitGraph",
+            "request": "launch",
+            "mainClass": "agudoy7/edu.ics211.h13.VisitGraph",
+            "projectName": "agudoy7"
+        },
+        {
+            "type": "java",
+            "name": "Dates",
+            "request": "launch",
+            "mainClass": "agudoy7/edu.ics211.spring2024.Dates",
+            "projectName": "agudoy7"
+        }
+    ]
+}

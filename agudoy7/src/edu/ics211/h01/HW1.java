@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 public class HW1 {
 	
 	public static void main(String[] args) throws FileNotFoundException{
-		
+
 		/* PART 1 */
 		int num = (int) (Math.random()*11);
 		
